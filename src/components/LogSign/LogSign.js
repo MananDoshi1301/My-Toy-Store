@@ -8,7 +8,7 @@ const LogSign = () => {
     let [login, setLogin] = useState(true);
 
     return (
-        <div>
+        <div className = {"overflow-hidden"}>
             <nav className="navbar navbar-dark bg-danger">
                 <div className="container-fluid">
                     <a className="navbar-brand fw-bold fs-1">MyToyStore</a>
