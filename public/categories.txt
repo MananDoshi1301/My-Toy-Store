@@ -1,0 +1,15 @@
+# Categories of toys
+
+    1) Shop By categories
+        vehicle and remote controls
+        dolls 
+        action figures
+        bikes and riding toys
+        games and puzzles
+        soft toys
+
+    2) Shop by brands 
+
+    3) Shop by color
+
+    4) Shop by price
