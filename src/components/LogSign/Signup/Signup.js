@@ -15,7 +15,7 @@ const Signup = () => {
                   Full Name
                 </label>
                 <input
-                  type="password"
+                  type="text"
                   className="form-control"
                   id="exampleInputPassword1"
                 ></input>
