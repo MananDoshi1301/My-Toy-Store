@@ -34,7 +34,7 @@ const Nav = ( props ) => {
 
                 {/* Username--------------------------------------------------- */}
                 <li className="nav-item order-2 mx-4 d-flex align-items-center">
-                  <a className="navbar-brand fs-4">Hello {props.name}!</a>
+                  <a className="navbar-brand fs-4 fw-bold">Hello {props.name}!</a>
                 </li>
                 {/* =========================================================== */}
 
