@@ -1,6 +1,6 @@
 # Categories of toys
 
-    1) Shop By categories
+    1) Shop By categories (type)
         vehicle and remote controls
         dolls 
         action figures
@@ -8,8 +8,33 @@
         games and puzzles
         soft toys
 
-    2) Shop by brands 
+    2) Shop by brands (brand)
+        Lego
+        Barbie
+        Nerf
+        Mattel  
+        Hotwheels
 
-    3) Shop by color
+    3) Shop by color (color)
+        black
+        blue
+        gray 
+        green
 
-    4) Shop by price
+    4) Shop by price (price)
+        below 500
+        501 - 750
+        751 - 1000
+        1001 - 1500
+        1501 - 3000
+        3001 - 5000
+        above 5000
+
+    5) Shop by age (age)
+        8+
+        13+
+        3 - 4
+        5 - 6
+        7 - 9
+        10 - 12
+        
