@@ -1,6 +1,15 @@
 import React from 'react'
 
 const Nav = ( props ) => {
+
+  const category = props.categories.map(category =>
+    <li>
+      <a className="dropdown-item fs-2 fw-bold">
+        {category}
+      </a>
+    </li>
+  );
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger fs-4">
@@ -47,18 +56,14 @@ const Nav = ( props ) => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    All Games And Links
+                    All Games And Toys
                     </a>
                   <ul
-                    className="dropdown-menu"
+                    className="dropdown-menu bg-warning border border-5 border-dark"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     {/* Map here for categories display */}
-                    <li>
-                      <a className="dropdown-item">
-                        Categories
-                        </a>
-                    </li>
+                    {category}
                     {/* ============================== */}
                   </ul>
                 </li>
