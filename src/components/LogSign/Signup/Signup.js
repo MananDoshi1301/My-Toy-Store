@@ -3,7 +3,7 @@ import classes from './Signup.module.css'
 
 const Signup = () => {
     return (
-      <div className={`row`}>
+      <div className={`row mb-5`}>
         <div className="col-lg-6 offset-lg-3 mt-5">
           <div
             className={`border border-5 p-5 ${classes.bordercurve} bg-warning`}
