@@ -12,6 +12,16 @@ import gamesAndPuzzles from "../../imagesForDB/gamesAndPuzzles.jpg"
 import gifts from "../../imagesForDB/gifts.jpg"
 import softToys from "../../imagesForDB/softToys.jpg"
 import vehicleAndRemoteControl from "../../imagesForDB/vehicleAndRemoteControl.jpg"
+import BrandCategory from './BrandCategory/BrandCategory'
+// =================================================================================
+
+// Images for BrandCategory---------------------------------------------------------
+import barbie from '../../imagesForDB/barbie.jpg'
+import hotwheels from '../../imagesForDB/hotwheels.jpg'
+import lego from '../../imagesForDB/lego.jpg'
+import mattel from '../../imagesForDB/mattel.jpg'
+import mothercare from '../../imagesForDB/mothercare.jpg'
+import nerf from '../../imagesForDB/nerf.jpg'
 // =================================================================================
 
 const Dashboard = () => {
@@ -27,6 +37,14 @@ const Dashboard = () => {
             {'Name':'Gifts', 'img':gifts},
             {'Name':'Soft Toys', 'img':softToys},
             {'Name':'Vehicle and Remote Control', 'img':vehicleAndRemoteControl},
+        ],
+        brandImgs:[
+            {'Name':'Barbie', 'img':barbie},
+            {'Name':'Hotwheels', 'img':hotwheels},
+            {'Name':'Lego', 'img':lego},
+            {'Name':'Mattel', 'img':mattel},
+            {'Name':'Mothercare', 'img':mothercare},
+            {'Name':'Nerf', 'img':nerf}
         ]
     };
 
@@ -37,6 +55,7 @@ const Dashboard = () => {
             <div className="container-fluid mb-5">
                 <AgeCategory age={category.age} colors={colors}></AgeCategory>
                 <TypeCategory typeObj={category.typeImgs}></TypeCategory>
+                <BrandCategory brandObj={category.brandImgs}></BrandCategory>
             </div>
         </>
     )
