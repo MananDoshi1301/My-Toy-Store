@@ -7,7 +7,7 @@ const TypeCategory = (props) => {
         <div class="card shadow p-0 mb-5 bg-body rounded">
             <img src={obj.img} class="card-img-top" alt={obj.Name}></img>
             <div class="card-body text-center ">
-                <p class="card-title fs-2">{obj.Name}</p>
+                <p class="card-title fs-3">{obj.Name}</p>
             </div>
         </div>
     </div>
