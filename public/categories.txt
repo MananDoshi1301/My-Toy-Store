@@ -1,12 +1,11 @@
 # Categories of toys
 
     1) Shop By categories (type)
-        vehicle and remote controls
-        dolls 
-        action figures
-        bikes and riding toys
-        games and puzzles
-        soft toys
+        vehicle and remote controls #
+        dolls #
+        action figures #
+        games and puzzles #
+        soft toys #
 
     2) Shop by brands (brand)
         Lego
