@@ -5,7 +5,7 @@ const Nav = ( props ) => {
   const category = props.categories.map(category =>
     <li>
       <a className="dropdown-item fs-2 fw-bold">
-        {category}
+        {category.Name}
       </a>
     </li>
   );
