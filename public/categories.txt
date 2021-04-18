@@ -8,11 +8,12 @@
         soft toys #
 
     2) Shop by brands (brand)
-        Lego
-        Barbie
-        Nerf
-        Mattel  
-        Hotwheels
+        Lego #
+        Barbie #
+        Nerf #
+        Mattel #  
+        Hotwheels #
+        mothercare #
 
     3) Shop by color (color)
         black
