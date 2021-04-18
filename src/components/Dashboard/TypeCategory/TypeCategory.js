@@ -1,5 +1,7 @@
 import React from 'react'
 
+import styles from "../../component.module.css"
+
 const TypeCategory = (props) => {
 
     const cardImageDisplay = props.typeObj.map(obj=>{
@@ -15,7 +17,7 @@ const TypeCategory = (props) => {
 
     return (
         <>  
-            <div className={`display-1 my-4 mt-5 text-center`}>
+            <div className={`display-1 my-4 mt-5 text-center fw-bold ${styles.architectDaughters}`}>
                 Shop By Category
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
