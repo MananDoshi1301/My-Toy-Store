@@ -21,7 +21,7 @@
         gray 
         green
 
-    4) Shop by price (price)
+    4) Shop by price (cost)
         below 500
         501 - 750
         751 - 1000
