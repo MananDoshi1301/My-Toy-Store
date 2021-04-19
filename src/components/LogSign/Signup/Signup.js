@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './Signup.module.css'
 
-const Signup = () => {
+const Signup = ({changeDetail, onSubmit}) => {
     return (
       <div className={`row mb-5`}>
         <div className="col-lg-6 offset-lg-3 mt-5">
@@ -11,22 +11,26 @@ const Signup = () => {
             <div className="display-3 fw-bold text-center pb-3">SignUp</div>
             <form>
               <div className="mb-3">
-                <label for="name" className="form-label">
+                <label htmlFor="name" className="form-label">
                   Full Name
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="exampleInputPassword1"
+                  name="fullName"//
+                  onChange={changeDetail}
+                  id="name"
                 ></input>
               </div>
               <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">
+                <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address
                 </label>
                 <input
                   type="email"
                   className="form-control"
+                  name="email"//
+                  onChange={changeDetail}
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                 ></input>
@@ -35,12 +39,14 @@ const Signup = () => {
                 </div>
               </div>
               <div className="mb-3">
-                <label for="exampleInputPassword1" className="form-label">
+                <label htmlFor="exampleInputPassword1" className="form-label">
                   Password
                 </label>
                 <input
                   type="password"
                   className="form-control"
+                  name="password"//
+                  onChange={changeDetail}
                   id="exampleInputPassword1"
                 ></input>
               </div>
@@ -51,6 +57,8 @@ const Signup = () => {
                 <input
                   type="tel"
                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  name="contact"//
+                  onChange={changeDetail}
                   className="form-control"
                   id="contactNo"
                 ></input>
@@ -58,7 +66,7 @@ const Signup = () => {
                   Enter a 10 digit phone number[123-456-7890].
                 </div>
               </div>
-              <button type="submit" className="btn btn-success">
+              <button type="submit" className="btn btn-success" onClick={onSubmit}>
                 Submit
               </button>
             </form>
