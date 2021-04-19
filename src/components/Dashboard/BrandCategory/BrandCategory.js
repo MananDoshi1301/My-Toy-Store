@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+import styles from "../../component.module.css"
 
 
 const BrandCategory = (props) => {
@@ -12,7 +12,7 @@ const BrandCategory = (props) => {
     })
     return (
         <>
-            <div className={`display-1 my-4 mt-5 text-center`}>
+            <div className={`display-1 my-4 mt-5 text-center fw-bold ${styles.architectDaughters} bg-danger`}>
                 Shop By Brand
             </div>
             <div className="container-fluid p-0">

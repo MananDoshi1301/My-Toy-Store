@@ -17,7 +17,7 @@ const TypeCategory = (props) => {
 
     return (
         <>  
-            <div className={`display-1 my-4 mt-5 text-center fw-bold ${styles.architectDaughters}`}>
+            <div className={`display-1 my-4 mt-5 text-center fw-bold ${styles.architectDaughters} bg-success`}>
                 Shop By Category
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
