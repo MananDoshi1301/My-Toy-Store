@@ -59,7 +59,7 @@ const Nav = ( props ) => {
                     All Games And Toys
                     </a>
                   <ul
-                    className="dropdown-menu bg-warning border border-5 border-dark"
+                    className="dropdown-menu bg-primary border border-5 border-dark"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     {/* Map here for categories display */}
