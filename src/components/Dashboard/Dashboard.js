@@ -26,7 +26,7 @@ import nerf from '../../imagesForDB/nerf.jpg'
 
 const Dashboard = () => {
 
-    const colors = ['danger', 'info', 'primary', 'warning', 'success', 'secondary']
+    const colors = ['danger', 'info', 'primary', 'success', 'secondary']
 
     const category = {
         age:['8', '13', '3 - 4', '5 - 6', '7 - 9', '10 - 12'],
