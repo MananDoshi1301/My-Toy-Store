@@ -4,8 +4,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 function App() {
   return (
     <div className="App">
-      {/* <LogSign /> */}
-      <Dashboard />
+      <LogSign />
+      {/* <Dashboard /> */}
     </div>
   );
 }
