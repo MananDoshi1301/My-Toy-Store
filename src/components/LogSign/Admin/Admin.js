@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import Select from 'react-select'
+import UploadProduct from "./UploadProduct";
 
 import {category} from "../../Data/Data";
 
@@ -20,8 +20,14 @@ const Admin = () => {
       ...stateDetails,
       [name]:value
     });
-    console.log(stateDetails);
+    // console.log(stateDetails);
   };
+
+  const sendData = () =>{
+    console.log("Submit Clicked");
+    const {url, progress} = UploadProduct(stateDetails);
+    console.log(progress, url);
+  } 
 
   return (
     <div className={`my-5`}>
@@ -101,9 +107,9 @@ const Admin = () => {
               </select>
 
               <button
-                type="submit"
+                // type="submit"
                 className="mt-3 btn btn-primary"
-                onClick={}
+                onClick={sendData}
               >Submit</button>
             </form>
           </div>
