@@ -45,7 +45,13 @@ const LogSign = () => {
             <nav className="navbar navbar-dark bg-danger">
                 <div className="container-fluid">
                     <a className="navbar-brand fw-bold fs-1">MyToyStore</a>
-                    <button className={"btn btn-warning btn-lg me-2"} type="button" onClick={() => { setLogin(!login) }}>{login ? `SignUp` : `LogIn`}</button>
+                    <button className={"btn btn-warning btn-lg me-2"}
+                        type="button"
+                        onClick={() => { 
+                            setLogin(!login)
+                            setDetails(initialDetails)
+                        }}
+                    >{login ? `SignUp` : `LogIn`}</button>
                 </div>
             </nav>
 
