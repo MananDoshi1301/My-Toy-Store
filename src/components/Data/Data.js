@@ -20,7 +20,7 @@ import nerf from '../../imagesForDB/nerf.jpg'
 
 // =================================================================================
 const user = {
-  name:null,
+  name:"User",
   email:null,
   password:null,
   contact:null,
@@ -54,4 +54,4 @@ const category = {
   ]
 };
 
-export {colors, category};
+export {colors, category, user};
