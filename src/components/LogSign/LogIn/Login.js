@@ -10,7 +10,7 @@ const Login = ( { changeDetail, onSubmit } ) => {
                             <div className="display-3 fw-bold text-center pb-3">
                                 LogIn
                             </div>  
-                            <form>
+                            {/* <form> */}
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                                     <input type="email" className="form-control" id="exampleInputEmail1" 
@@ -26,8 +26,12 @@ const Login = ( { changeDetail, onSubmit } ) => {
                                         onChange={changeDetail}
                                         id="exampleInputPassword1"></input>
                                 </div>
-                                <button type="submit" className="btn btn-success" onClick={onSubmit}>Submit</button>
-                            </form>
+                                <button
+                                    // type="submit"
+                                    className="btn btn-success"
+                                    onClick={onSubmit}
+                                >Submit</button>
+                            {/* </form> */}
                         </div>
                    </div>
                </div>
