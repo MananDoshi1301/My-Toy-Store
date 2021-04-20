@@ -1,22 +1,32 @@
-import React,{useEffect, useState} from 'react'
-import {projectStorage} from "../../../Firebase/config";
+import React, { useState, useEffect } from 'react';
+import { projectStorage,projectFirestore, timestamp } from "../../../Firebase/config";
 
-const UploadProduct = (file) => {
+const UploadProduct = (file, imgName) => {
+    const [progress, setProgress] = useState(0);
+    const [error, setError] = useState(null);
     const [url, setUrl] = useState(null);
-    const [progress, setProgress] = useState(null);
+    
+    useEffect(() => {
+        console.log(file.prodImage);
+        const storageRef = projectStorage.ref(imgName);
+        const collectionRef = projectFirestore.collection('products');
 
-    useEffect(()=>{
-        const storageRef = projectStorage.ref(file.name);
-        console.log(file.name, file);
-        storageRef.put(file).on('state_changed', snap=>{
-            let percentage = (snap.bytesTransferred/snap.totalBytes) * 100;
-        }, async ()=>{
-            const ur = await storageRef.getDownloadURL();
-            setUrl(ur);
+        storageRef.put(file.prodImage).on('state_changed', snap => {
+            let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+            setProgress(percentage);
+        }, (err) => {
+            setError(err);
+        }, async () => {
+            const url = await storageRef.getDownloadURL();                        
+            const createdAt = timestamp();
+            delete file.prodImage;
+            await collectionRef.add({ file, url, createdAt });                        
+            setUrl(url);            
         })
-        // console.log("File Changed");    
-    },[file])
-    return {url, progress};
+    }, [file]);
+
+    return { progress, url, error };
+    
 }
 
 export default UploadProduct;
