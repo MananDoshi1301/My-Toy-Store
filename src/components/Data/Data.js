@@ -1,3 +1,5 @@
+import React from 'react';
+
 //Images For TypeCategory-----------------------------------------------------------
 import actionFigures from "../../imagesForDB/actionFigures.jpg"
 import dolls from "../../imagesForDB/dolls.jpg"
@@ -17,6 +19,12 @@ import mothercare from '../../imagesForDB/mothercare.jpg'
 import nerf from '../../imagesForDB/nerf.jpg'
 
 // =================================================================================
+const user = {
+  name:null,
+  email:null,
+  password:null,
+  contact:null,
+}
 
 const colors = ["danger", "info", "primary", "success", "secondary"];
 
