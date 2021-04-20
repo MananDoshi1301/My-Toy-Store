@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Admin from './Admin/Admin';
 import Login from './LogIn/Login'
 import NewUserProgress from './Signup/NewUserProgress';
@@ -41,38 +42,37 @@ const LogSign = () => {
     }
     
     return (
-        <div className={"overflow-hidden"}>
-            <nav className="navbar navbar-dark bg-danger">
-                <div className="container-fluid">
-                    <a className="navbar-brand fw-bold fs-1">MyToyStore</a>
-                    <button className={"btn btn-warning btn-lg me-2"}
-                        type="button"
-                        onClick={() => { 
-                            setLogin(!login)
-                            setDetails(initialDetails)
-                        }}
-                    >{login ? `SignUp` : `LogIn`}</button>
-                </div>
-            </nav>
+        <Router>
+            <Switch>                
+                <div className={"overflow-hidden"}>
+                    <nav className="navbar navbar-dark bg-danger">
+                        <div className="container-fluid">
+                            <a className="navbar-brand fw-bold fs-1">MyToyStore</a>
+                            <button className={"btn btn-warning btn-lg me-2"}
+                                type="button"
+                                onClick={() => {
+                                    setLogin(!login)
+                                    setDetails(initialDetails)
+                                }}
+                            >{login ? `SignUp` : `LogIn`}</button>
+                        </div>
+                    </nav>
 
-            <div>
-                {uploadSignUpData && 
-                <NewUserProgress
-                file={details} 
-                // setFile={setDetails}
-                />}
-            </div>
-        
-            {login ? 
-            <Login changeDetail={handleInputChange} onSubmit={submitData} /> : 
-            <Signup changeDetail={handleInputChange} onSubmit={submitData} />}
-            <p className={`text-end fs-5`}>
-                <a className={`link-secondary me-4`}>
-                    For Admin Click Here!
-                </a>
-            </p>
-            {/* <Admin></Admin> */}
-        </div>
+                    <div>
+                        {uploadSignUpData &&
+                            <NewUserProgress
+                                file={details}
+                            // setFile={setDetails}
+                            />}
+                    </div>
+
+                    {login ?
+                    <Login changeDetail={handleInputChange} onSubmit={submitData} /> :
+                    <Signup changeDetail={handleInputChange} onSubmit={submitData} />}
+                                        
+                </div>
+            </Switch>
+        </Router>
     )
 }
 
