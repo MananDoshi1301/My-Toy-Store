@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import {user} from "./Data/Data";
 
 const Nav = ( props ) => {
 
@@ -9,6 +11,28 @@ const Nav = ( props ) => {
       </a>
     </li>
   );
+
+  const logSignUpDropDown = (<li className="nav-item dropdown">
+    <a
+      className="nav-link dropdown-toggle mx-3"
+      id="navbarDropdownMenuLink1"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Hello User
+    </a>
+    <ul
+      className="dropdown-menu bg-warning border border-5 border-dark"
+      aria-labelledby="navbarDropdownMenuLink1"
+    >
+      <li>
+        <Link to="/logSign" className="dropdown-item fs-5 fw-bold">
+          LogIn/SignUp
+        </Link>
+      </li>
+    </ul>
+  </li>)
 
   return (
     <>
@@ -43,7 +67,10 @@ const Nav = ( props ) => {
 
                 {/* Username--------------------------------------------------- */}
                 <li className="nav-item order-2 mx-4 d-flex align-items-center">
-                  <a className="navbar-brand fs-4 fw-bold">Hello {props.name}!</a>
+                  {/* {user.name==="User" && } */}
+                  {user.name === "User"?
+                  logSignUpDropDown:<a className="navbar-brand fs-4 fw-bold">Hello {user.name}!</a>}
+                  
                 </li>
                 {/* =========================================================== */}
 
