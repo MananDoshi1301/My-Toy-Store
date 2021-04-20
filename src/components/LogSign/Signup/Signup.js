@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './Signup.module.css'
 
 const Signup = ({changeDetail, onSubmit}) => {
+  
     return (
       <div className={`row mb-5`}>
         <div className="col-lg-6 offset-lg-3 mt-5">
@@ -66,7 +67,10 @@ const Signup = ({changeDetail, onSubmit}) => {
                   Enter a 10 digit phone number[123-456-7890].
                 </div>
               </div>
-              <button type="submit" className="btn btn-success" onClick={onSubmit}>
+              <button 
+              // type="submit" 
+              className="btn btn-success" 
+              onClick={onSubmit}>
                 Submit
               </button>
             </form>
