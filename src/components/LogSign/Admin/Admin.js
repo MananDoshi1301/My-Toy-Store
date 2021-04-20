@@ -1,20 +1,20 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import Select from 'react-select'
 
 import {category} from "../../Data/Data";
 
 const Admin = () => {
 
-  const productDetail = {
+  let [stateDetails, setStateDetails] = useState({
     prodImage:null,
     prodName:null,
     prodType:null,
     prodBrand:null,
     prodColor:null,
-  }
-
-  let [stateDetails, setStateDetails] = useState(productDetail);
+  });
 
   const handleNewProduct = (e) => {
+    console.log(e.target.name, e.target.value);
     const {name, value} = e.target;
     setStateDetails({
       ...stateDetails,
@@ -22,17 +22,6 @@ const Admin = () => {
     });
     console.log(stateDetails);
   };
-
-
-  const typeCategory = category.typeImgs.map((obj)=>{
-    return <option value={obj.Name}>{obj.Name}</option>
-  })
-  const brandCategory = category.brandImgs.map( obj=>{
-    return <option value={obj.Name}>{obj.Name}</option>
-  })
-  const colorCategory = category.color.map( obj=>{
-    return <option value={obj.Name}>{obj.Name}</option>
-  })
 
   return (
     <div className={`my-5`}>
@@ -43,6 +32,7 @@ const Admin = () => {
           <div className="col-lg-5">
 
             <form>
+              {/* Product Image */}
               <label className={`form-label fs-3 mt-3`} htmlFor="productImage">
                 Product Image:
               </label>
@@ -55,6 +45,7 @@ const Admin = () => {
                 onChange={handleNewProduct} required
               />
 
+              {/* Product Name */}
               <label className={`form-label fs-3 mt-3`} htmlFor="productName">
                 Product Name
               </label>
@@ -66,36 +57,54 @@ const Admin = () => {
                 onChange={handleNewProduct} required
               />
 
+              {/* Product Type */}
               <label className={`form-label fs-3 mt-3`} htmlFor="productType">
                 Product Type
               </label>
-              <select className={`form-control`} name="" id="productType"
-                onChange={handleNewProduct} required
+              <select className={`form-control`} 
+                id="productType"
+                onChange={handleNewProduct} 
+                name="prodType" //imp
+                required
               >
-                {typeCategory}
+                {category.typeImgs.map((obj)=>{
+                  return <option value={obj.value}>{obj.Name}</option>
+                })}
               </select>
 
-
+              {/* Product Brand */}
               <label className={`form-label fs-3 mt-3`} htmlFor="productBrand">
                 Product Brand
               </label>
               <select className={`form-control`} name="" id="productBrand"
-                onChange={handleNewProduct} required
-                value={value}
+                onChange={handleNewProduct} 
+                name="prodBrand"
+                required
               >
-                {brandCategory}
+                {category.brandImgs.map(obj => {
+                  return <option value={obj.value}>{obj.value}</option>
+                })}
               </select>
 
+              {/* Product Color */}
               <label className={`form-label fs-3 mt-3`} htmlFor="productColor">
                 Product Color
               </label>
-              <select className={`form-control`} name="" id="productColor"
+              <select className={`form-control`} 
+                name="prodColor" 
+                id="productColor"
                 onChange={handleNewProduct} required
               >
-                {colorCategory}
+                {category.color.map(obj => {
+                  return <option value={obj.value}>{obj.value}</option>
+                })}
               </select>
 
-              <button type="submit" className="mt-3 btn btn-primary" >Submit</button>
+              <button
+                type="submit"
+                className="mt-3 btn btn-primary"
+                onClick={}
+              >Submit</button>
             </form>
           </div>
         </div>
