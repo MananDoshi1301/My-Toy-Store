@@ -1,12 +1,22 @@
 import React from "react";
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LogSign from "./components/LogSign/LogSign";
 import Dashboard from "./components/Dashboard/Dashboard";
+
 function App() {
   return (
-    <div className="App">
-      <LogSign />
-      {/* <Dashboard /> */}
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/logSign">
+            <LogSign />
+          </Route>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
