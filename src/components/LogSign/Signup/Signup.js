@@ -10,7 +10,7 @@ const Signup = ({changeDetail, onSubmit}) => {
             className={`border border-5 p-5 ${classes.bordercurve} bg-warning`}
           >
             <div className="display-3 fw-bold text-center pb-3">SignUp</div>
-            <form>
+            {/* <form> */}
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Full Name
@@ -73,7 +73,7 @@ const Signup = ({changeDetail, onSubmit}) => {
               onClick={onSubmit}>
                 Submit
               </button>
-            </form>
+            {/* </form> */}
           </div>
         </div>
       </div>
