@@ -24,6 +24,7 @@ const user = {
   email:null,
   password:null,
   contact:null,
+  id:null,
 }
 
 const colors = ["danger", "info", "primary", "success", "secondary"];
