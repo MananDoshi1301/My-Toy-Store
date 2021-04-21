@@ -43,20 +43,30 @@ const LogSign = () => {
     return (
         // <Router>
         //     <Switch>                
-                <div className={"overflow-hidden"}>
-                    <nav className="navbar navbar-dark bg-danger">
-                        <div className="container-fluid">                            
-                                <Link to="/" className="navbar-brand fw-bold fs-1">
-                                    MyToyStore
-                                </Link>                            
-                            <button className={"btn btn-warning btn-lg me-2"}
-                                type="button"
-                                onClick={() => {
-                                    setLogin(!login)
-                                    setDetails(initialDetails)
-                                }}
-                            >{login ? `SignUp` : `LogIn`}</button>
-                        </div>
+        <div className={"overflow-hidden"}>
+            <nav className="navbar navbar-dark bg-danger">
+                <div className="container-fluid">
+                    <Link to="/" className="navbar-brand fw-bold fs-1">
+                        MyToyStore
+                                </Link>
+                    <div>
+                        <button
+                            className={"btn btn-warning btn-lg me-2"}
+                            type="button"
+                            onClick={() => {
+                                setLogin(!login)
+                                setDetails(initialDetails)
+                            }}
+                        >{login ? `SignUp` : `LogIn`}</button>
+                        <Link to="/">
+                        <button
+                            className={"btn btn-warning btn-lg mx-2"}
+                        >
+                            Back To Dashboard
+                            </button>
+                            </Link>
+                    </div>
+                </div>
                     </nav>
 
                     <div>
