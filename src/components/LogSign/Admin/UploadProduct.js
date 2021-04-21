@@ -20,7 +20,9 @@ const UploadProduct = (file, imgName) => {
             const url = await storageRef.getDownloadURL();                        
             const createdAt = timestamp();
             delete file.prodImage;
-            await collectionRef.add({ file, url, createdAt }).then(alert("Product added!"));                        
+            await collectionRef.add({ file, url, createdAt }).then(
+                alert("Product added!")
+            );                        
             setUrl(url);            
         })
     }, [file]);
