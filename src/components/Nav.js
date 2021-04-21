@@ -1,9 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import {user} from "./Data/Data";
 
 const Nav = ( props ) => {
-
+  
   const category = props.categories.map(category =>
     <li>
       <a className="dropdown-item fs-2 fw-bold">
