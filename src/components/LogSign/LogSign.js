@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import CheckUser from '../FetchData';
 import Login from './LogIn/Login'
 import NewUserProgress from './Signup/NewUserProgress';
 import Signup from './Signup/Signup'
 
 
+
 const LogSign = () => {
+
+    const {docs} = CheckUser('userDetails'); 
 
     let [login, setLogin] = useState(true);    
 
@@ -32,6 +36,7 @@ const LogSign = () => {
         
         if(login === false){
             console.log("Submit from Signup clicked!");
+            console.log(docs);
             setUploadSignUpData(true);
         }
         else{
@@ -40,6 +45,8 @@ const LogSign = () => {
         console.log(details);
     }
     
+    
+
     return (
         // <Router>
         //     <Switch>                
@@ -48,7 +55,7 @@ const LogSign = () => {
                 <div className="container-fluid">
                     <Link to="/" className="navbar-brand fw-bold fs-1">
                         MyToyStore
-                                </Link>
+                    </Link>
                     <div>
                         <button
                             className={"btn btn-warning btn-lg me-2"}
