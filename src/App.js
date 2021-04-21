@@ -8,11 +8,11 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route exact path="/logSign">
-            <LogSign />
-          </Route>
           <Route exact path="/">
             <Dashboard />
+          </Route>
+          <Route exact path="/logSign">
+            <LogSign />
           </Route>
         </Switch>
       </div>
