@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 import UploadProgress from './UploadProgress'
 import { category } from "../../Data/Data";
 
@@ -113,11 +114,17 @@ const Admin = () => {
                   return <option value={obj.value}>{obj.value}</option>
                 })}
               </select>
-
-              <button
-                className="mt-3 btn btn-primary"
-                onClick={() => { sendData(stateDetails) }}
-              >Submit</button>
+              <div className="d-flex justify-content-between">
+                <button
+                  className="mt-3 btn btn-primary"
+                  onClick={() => { sendData(stateDetails) }}
+                >Submit</button>
+                <Link to="/">
+                  <button className="mt-3 btn btn-primary">
+                    Back To Dashboard
+                  </button>
+                </Link>
+              </div>
             </form>
           </div>
         </div>
