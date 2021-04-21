@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LogSign from "./components/LogSign/LogSign";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Admin from "./components/LogSign/Admin/Admin";
@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/admin">
             <Admin />
           </Route>
-          <Route exact path="/product">
+          <Route exact path="/product/:itempType">
             <ProductGrid />
           </Route>
         </Switch>
