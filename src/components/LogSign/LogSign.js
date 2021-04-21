@@ -54,6 +54,7 @@ const LogSign = () => {
       console.log(docs);
       let oldUser = false;
       let name = "";
+      let id = "";
       for (let i = 0; i < docs.length; i++) {
         if (
           details.email === docs[i].email &&
@@ -61,12 +62,14 @@ const LogSign = () => {
         ) {
           oldUser = true;
           name = docs[i].fullName;
+          id = docs[i].id;
           break;
         }
       }
       if (oldUser) {
         alert("User logged in successfully!");
         user.name = name;
+        user.id = id;
         history.push("/");
       } else {
         alert("Email or password is incorrect!");
