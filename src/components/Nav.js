@@ -31,6 +31,11 @@ const Nav = ( props ) => {
           LogIn/SignUp
         </Link>
       </li>
+      <li>
+        <Link to="/admin" className="dropdown-item fs-5 fw-bold">
+          Admin
+        </Link>
+      </li>
     </ul>
   </li>)
 
