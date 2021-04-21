@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {projectFirestore} from '../Firebase/config'
 
-const CheckUser = (collection) => {
+const FetchData = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
@@ -20,4 +20,4 @@ const CheckUser = (collection) => {
 return { docs };
 }
 
-export default CheckUser;
+export default FetchData;
