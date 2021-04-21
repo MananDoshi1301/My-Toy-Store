@@ -29,7 +29,7 @@ const LogSign = () => {
           ...details,
           [name]: value,
         });     
-        console.log(details);   
+        // console.log(details);   
     };    
 
     const submitData = () => {
