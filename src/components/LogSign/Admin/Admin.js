@@ -8,6 +8,7 @@ const Admin = () => {
   let [stateDetails, setStateDetails] = useState({
     prodImage: null,
     prodName: null,
+    prodPrice: 0,
     prodType: 'Action Figures',
     prodBrand: 'Barbie',
     prodColor: 'Black',    
@@ -46,7 +47,7 @@ const Admin = () => {
 
         <div className="row mt-3">
           <div className="col-lg-5">   
-            <form>
+            
               {/* Product Image */}
               <label className={`form-label fs-3 mt-3`} htmlFor="productImage">
                 Product Image:
@@ -63,12 +64,24 @@ const Admin = () => {
               {/* Product Name */}
               <label className={`form-label fs-3 mt-3`} htmlFor="productName">
                 Product Name
-            </label>
+              </label>
               <input
                 className={`form-control`}
                 type="text"
                 id="productName"
                 name="prodName"
+                onChange={handleNewProduct} required
+              />
+
+              <label className={`form-label fs-3 mt-3`} htmlFor="productName">
+                Product Price
+              </label>
+              <input
+                className={`form-control`}
+                type="number"
+                min="0"
+                id="productPrice"
+                name="prodPrice"
                 onChange={handleNewProduct} required
               />
 
@@ -125,7 +138,7 @@ const Admin = () => {
                   </button>
                 </Link>
               </div>
-            </form>
+            
           </div>
         </div>
       </div>
