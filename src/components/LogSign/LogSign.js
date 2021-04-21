@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import CheckUser from "../FetchData";
+import FetchData from "../FetchData";
 import Login from "./LogIn/Login";
 import NewUserProgress from "./Signup/NewUserProgress";
 import Signup from "./Signup/Signup";
 import { user } from "../Data/Data";
 
 const LogSign = () => {
-  const { docs } = CheckUser("userDetails");
+  const { docs } = FetchData("userDetails");
   const history = useHistory();
   let [login, setLogin] = useState(true);
 
