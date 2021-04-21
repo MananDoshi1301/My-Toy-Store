@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/admin">
             <Admin />
           </Route>
-          <Route exact path="/product/:itempType">
+          <Route path="/product/:itemType">
             <ProductGrid />
           </Route>
         </Switch>
