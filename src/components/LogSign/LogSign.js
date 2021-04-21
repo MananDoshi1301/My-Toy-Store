@@ -4,6 +4,7 @@ import CheckUser from "../FetchData";
 import Login from "./LogIn/Login";
 import NewUserProgress from "./Signup/NewUserProgress";
 import Signup from "./Signup/Signup";
+import { user } from "../Data/Data";
 
 const LogSign = () => {
   const { docs } = CheckUser("userDetails");
@@ -47,20 +48,25 @@ const LogSign = () => {
       if (newUser) {
         setUploadSignUpData(true);
       }
-    } else {
+    }
+    //Login Conditions
+    else {
       console.log(docs);
       let oldUser = false;
+      let name = "";
       for (let i = 0; i < docs.length; i++) {
         if (
           details.email === docs[i].email &&
           details.password === docs[i].password
         ) {
           oldUser = true;
+          name = docs[i].fullName;
           break;
         }
       }
       if (oldUser) {
         alert("User logged in successfully!");
+        user.name = name;
         history.push("/");
       } else {
         alert("Email or password is incorrect!");
