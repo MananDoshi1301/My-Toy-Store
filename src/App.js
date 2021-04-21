@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LogSign from "./components/LogSign/LogSign";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Admin from "./components/LogSign/Admin/Admin";
+import ProductGrid from "./components/ProductGrid/ProductGrid";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route exact path="/admin">
             <Admin />
+          </Route>
+          <Route exact path="/product">
+            <ProductGrid />
           </Route>
         </Switch>
       </div>
