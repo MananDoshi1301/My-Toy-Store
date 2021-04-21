@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import {BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Admin from './Admin/Admin';
+import { Link } from 'react-router-dom';
 import Login from './LogIn/Login'
 import NewUserProgress from './Signup/NewUserProgress';
 import Signup from './Signup/Signup'
@@ -42,12 +41,14 @@ const LogSign = () => {
     }
     
     return (
-        <Router>
-            <Switch>                
+        // <Router>
+        //     <Switch>                
                 <div className={"overflow-hidden"}>
                     <nav className="navbar navbar-dark bg-danger">
-                        <div className="container-fluid">
-                            <a className="navbar-brand fw-bold fs-1">MyToyStore</a>
+                        <div className="container-fluid">                            
+                                <Link to="/" className="navbar-brand fw-bold fs-1">
+                                    MyToyStore
+                                </Link>                            
                             <button className={"btn btn-warning btn-lg me-2"}
                                 type="button"
                                 onClick={() => {
@@ -71,8 +72,8 @@ const LogSign = () => {
                     <Signup changeDetail={handleInputChange} onSubmit={submitData} />}
                                         
                 </div>
-            </Switch>
-        </Router>
+        //     </Switch>
+        // </Router>
     )
 }
 
