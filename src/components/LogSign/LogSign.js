@@ -37,7 +37,20 @@ const LogSign = () => {
         if(login === false){
             console.log("Submit from Signup clicked!");
             console.log(docs);
-            setUploadSignUpData(true);
+            let newUser = true;
+            for(let i=0; i<docs.length; i++){
+                if(details.email === docs[i].email){
+                    alert("Email Already Registered!");
+                    newUser = false;
+                }
+                if(details.password === docs[i].password){
+                    alert("Password Already Exists!");
+                    newUser = false;
+                }
+            }
+            if(newUser){
+                setUploadSignUpData(true);
+            }
         }
         else{
 
