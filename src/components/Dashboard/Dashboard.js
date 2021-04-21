@@ -4,12 +4,9 @@ import AgeCategory from './AgeCategory/AgeCategory'
 import Carousel from './Carousel/Carousel'
 import TypeCategory from './TypeCategory/TypeCategory'
 import BrandCategory from './BrandCategory/BrandCategory'
-import FetchData from '../FetchData';
-import {colors, category} from "../Data/Data";
+import { colors, category } from "../Data/Data";
 
-const Dashboard = () => {    
-    const {docs} = FetchData('products');
-    console.log(docs);
+const Dashboard = () => {
     return (
         <>
             <Nav categories={category.typeImgs}></Nav>
