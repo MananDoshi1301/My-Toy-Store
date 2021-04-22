@@ -4,7 +4,7 @@ import FetchData from "./FetchData";
 
 const Nav = (props) => {
   const [name, setName] = useState(localStorage.getItem("userName"));
-
+  set [cart, setCart] = useState([]);
   const { docs } = FetchData("products");
 
   // console.log(docs);
@@ -29,7 +29,7 @@ const Nav = (props) => {
       items[i]["total"] = num;
     }
     console.log(items);
-
+    setCart(items);
   }
 
 
@@ -133,7 +133,7 @@ const Nav = (props) => {
                             {<div class="list-group">
                               <div class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
-                                  <h5 class="mb-1">List group item heading</h5>
+                                  <h5 class="mb-1">List group item heading</h5>  {/*////*/}
                                   {/* <small>3 days ago</small> */}
                                 </div>
                                 <p class="mb-1">Some placeholder content in a paragraph.</p>
