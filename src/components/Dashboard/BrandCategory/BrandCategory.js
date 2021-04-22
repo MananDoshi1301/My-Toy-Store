@@ -1,13 +1,15 @@
 import React from 'react'
-
-import styles from "../../component.module.css"
+import { Link } from 'react-router-dom';
+import styles from "../../component.module.css";
 
 
 const BrandCategory = (props) => {
 
-    const brandImgDisplay = props.brandObj.map(obj=>{
+    const brandImgDisplay = props.brandObj.map(obj => {
         return <div className={`col-lg-4 col-md-4 col-sm-6 col-6 p-0`}>
-            <img className={`img-fluid`} src={obj.img} alt="" srcset="" />
+            <Link to={`/product/prodType/${obj.Name}`}>
+                <img className={`img-fluid`} src={obj.img} alt="" srcset="" />
+            </Link>
         </div>
     })
     return (
