@@ -10,8 +10,8 @@ const ProductGrid = () => {
   console.log(categoryType, itemType, docs);
   const [prodId, setProdId] = useState("");
 
-  const addProduct = () => {
-
+  const addProduct = (id) => {
+    setProdId(id);
   }
 
   return (
@@ -78,8 +78,7 @@ const ProductGrid = () => {
                             `
                             }
                             onClick={() => {
-                              setProdId(product.id)
-                              addProduct();
+                              addProduct(product.id);
                             }}
                           >
                             Add To Cart
