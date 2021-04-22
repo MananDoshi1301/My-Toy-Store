@@ -8,6 +8,11 @@ const ProductGrid = () => {
   const { docs } = FetchData("products"); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
   console.log(categoryType, itemType, docs);
+  const [prodId, setProdId] = useState("");
+
+  const addProduct = () => {
+
+  }
 
   return (
     <>
@@ -66,9 +71,19 @@ const ProductGrid = () => {
                           )}
                         </ul>
                         <div className={`text-end`}>
-                          <a href="#" class="btn btn-success">
+                          <button
+                            className={
+                              `btn btn-success
+                            ${localStorage.getItem('userName') === 'User' ? `disabled` : ""}
+                            `
+                            }
+                            onClick={() => {
+                              setProdId(product.id)
+                              addProduct();
+                            }}
+                          >
                             Add To Cart
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
