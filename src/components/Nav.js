@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PlaceOrder from "./Dashboard/PlaceOrder";
 import FetchData from "./FetchData";
+import styles from "./component.module.css";
 
 const Nav = (props) => {
   const [name, setName] = useState(localStorage.getItem("userName"));
   let [cart, setCart] = useState([]);
   const [cartModal, setCartModal] = useState(null);
-  const [priceChanged, setPriceChanged] = useState(false);
+  let [price, setPrice] = useState(0);
   const [finalOrder, setFinalOrder] = useState({});
   const [placeOrder, setPlaceOrder] = useState(false);
   const { docs } = FetchData("products");
@@ -20,9 +21,14 @@ const Nav = (props) => {
       let obj = "item " + i;
       item.push(cart[i]["doc"], cart[i]["total"]);
     }
-    setFinalOrder({ userId: localStorage.getItem("userId"), order: item });
+    setFinalOrder({
+      orderCost: price,
+      userId: localStorage.getItem("userId"),
+      order: item,
+    });
     console.log(finalOrder);
   };
+
   const computeCart = () => {
     // console.log(props.cartItems, "priceChanged");
     let items = [];
@@ -31,10 +37,12 @@ const Nav = (props) => {
         items.push({ id: docs[i].id, doc: docs[i], total: 0 });
       }
     }
+    console.log(items);
     for (let i = 0; i < items.length; i++) {
       let id = items[i]["id"];
       let num = 0;
       // console.log(id, , num);
+
       for (let j = 0; j < props.cartItems.length; j++) {
         if (id === props.cartItems[j]) {
           num++;
@@ -42,9 +50,13 @@ const Nav = (props) => {
       }
       items[i]["total"] = num;
     }
-    // console.log(items);
     setCart(items);
-    console.log(cart);
+    let sum = 0;
+    for (let i = 0; i < items.length; i++) {
+      sum += items[i]["total"] * items[i]["doc"]["file"]["prodPrice"];
+    }
+    console.log(sum);
+    setPrice(sum);
   };
 
   const removeItem = (id) => {
@@ -122,7 +134,7 @@ const Nav = (props) => {
                       +
                     </button>
                   </div>
-                  <div className={`ms-2 mt-2 fs-5`}>
+                  <div className={`ms-2 mt-2 fs-6`}>
                     Sub-total: {obj["total"] * obj["doc"]["file"]["prodPrice"]}
                   </div>
                 </div>
@@ -257,6 +269,9 @@ const Nav = (props) => {
                             <div class="list-group">{cartModal}</div>
                           </div>
                           <div class="modal-footer">
+                            <div className={`${styles.marEnd} fw-bold`}>
+                              <span>Total: {price}</span>
+                            </div>
                             <button
                               type="button"
                               className={`btn btn-secondary ${
@@ -338,7 +353,7 @@ const Nav = (props) => {
                 )}
                 {/* ========================================================== */}
 
-                {/* DropDown -------------------------------------------------- */}
+                {/* DropDown Brand-------------------------------------------- */}
                 {props.navShow.brandCat && (
                   <li className="nav-item dropdown order-1">
                     <a
@@ -351,7 +366,7 @@ const Nav = (props) => {
                       All Brands
                     </a>
                     <ul
-                      className="dropdown-menu bg-primary border border-5 border-dark"
+                      className="dropdown-menu bg-warning border border-5 border-dark"
                       aria-labelledby="navbarDropdownMenuLink"
                     >
                       {/* Map here for categories display */}
