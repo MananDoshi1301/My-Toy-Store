@@ -6,9 +6,12 @@ import TypeCategory from './TypeCategory/TypeCategory'
 import BrandCategory from './BrandCategory/BrandCategory'
 import { colors, category } from "../Data/Data";
 
-const Dashboard = () => {
+const Dashboard = ({cartItems,setCartItems}) => {
+    // console.log(JSON.parse(JSON.stringify(localStorage.getItem("userCart"))));
+    // console.log(JSON.parse(localStorage.getItem("userCart")));
+    console.log(cartItems);
     return (
-        <>
+        <>              
             <Nav
                 typeCategories={category.typeImgs}
                 brandCategories={category.brandImgs}

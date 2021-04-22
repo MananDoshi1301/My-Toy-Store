@@ -156,7 +156,8 @@ const Nav = (props) => {
                   onClick={() => {
                     localStorage.setItem("userName", "User");
                     localStorage.setItem("userId", "");
-                    localStorage.setItem("userCart", {});
+                    localStorage.setItem("userCart", JSON.stringify([]));
+                    props.setCartItems([]);
                     setName("User");
                   }}
                 >

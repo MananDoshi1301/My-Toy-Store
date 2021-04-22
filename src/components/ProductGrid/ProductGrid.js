@@ -1,39 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "../Nav";
-import AddProductDB from "./AddProductDB";
 import FetchData from "../FetchData";
 import { category } from "../Data/Data";
 
-const ProductGrid = () => {
+const ProductGrid = ({cartItems,setCartItems}) => {
   let num = 0;
   const { docs } = FetchData("products"); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
-  console.log(categoryType, itemType, docs);
   const [prodId, setProdId] = useState("");
-  const [uploadToCart, setUploadToCart] = useState(false);
-  const [cart, setCart] = useState({});
+
+  // console.log(categoryType, itemType, docs, cartItems);
+  console.log(cartItems);
 
   const addProduct = (id) => {
     setProdId(id);
-    // setUploadToCart(true);
     alert("Adding " + id);
-
-    if (cart.hasOwnProperty(id)) {
-      setCart(cart[id] + 1);
-    } else {
-      setCart();
-    }
-    console.log(cart);
-    // localStorage.setItem("userCart", cart);
-    // console.log(localStorage.getItem("userCart"), cart);
+    setCartItems([...cartItems,id]);
   };
 
   return (
     <>
-      {uploadToCart && (
-        <AddProductDB id={prodId} resetAdded={setUploadToCart}></AddProductDB>
-      )}
       <Nav
         typeCategories={category.typeImgs}
         brandCategories={category.brandImgs}
@@ -42,6 +29,8 @@ const ProductGrid = () => {
           brandCat: true,
           cart: false,
         }}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
       />
       <div className="container my-5">
         <div class="row row-cols-1 row-cols-md-4 g-4">
