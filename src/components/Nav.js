@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Nav = (props) => {
+  const [name, setName] = useState(localStorage.getItem("userName"));
+  useEffect(() => {}, [name]);
+  console.log(name);
   const category = props.typeCategories.map((category) => (
     <li>
       <Link to={`/product/prodType/${category.Name}`}>
@@ -71,7 +74,7 @@ const Nav = (props) => {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav d-flex justify-space-between">
                 {/* Cart ----------------------------------------------------- */}
-                {props.navShow.cart && (
+                {name != "User" && props.navShow.cart && (
                   <li className="nav-item order-3 mx-2">
                     <a className="nav-link">
                       <svg
@@ -90,7 +93,7 @@ const Nav = (props) => {
                 {/* =========================================================== */}
 
                 {/* Username--------------------------------------------------- */}
-                <li className="nav-item order-2 mx-4 d-flex align-items-center">
+                <li className="nav-item order-2 d-flex align-items-center">
                   {/* {user.name==="User" && } */}
                   {localStorage.getItem("userName") === "User" ? (
                     logSignUpDropDown
@@ -148,15 +151,18 @@ const Nav = (props) => {
                 )}
                 {/* ========================================================== */}
               </ul>
-              <button
-                className={`btn btn-warning ms-3`}
-                onClick={() => {
-                  localStorage.setItem("userName", "User");
-                  localStorage.setItem("userId", "");
-                }}
-              >
-                LogOut
-              </button>
+              {name != "User" && (
+                <button
+                  className={`btn btn-warning ms-3`}
+                  onClick={() => {
+                    localStorage.setItem("userName", "User");
+                    localStorage.setItem("userId", "");
+                    setName("User");
+                  }}
+                >
+                  LogOut
+                </button>
+              )}
             </div>
           </div>
         </div>
