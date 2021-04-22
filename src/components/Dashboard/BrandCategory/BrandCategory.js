@@ -7,7 +7,7 @@ const BrandCategory = (props) => {
 
     const brandImgDisplay = props.brandObj.map(obj => {
         return <div className={`col-lg-4 col-md-4 col-sm-6 col-6 p-0`}>
-            <Link to={`/product/prodType/${obj.Name}`}>
+            <Link to={`/product/prodBrand/${obj.Name}`}>
                 <img className={`img-fluid`} src={obj.img} alt="" srcset="" />
             </Link>
         </div>
