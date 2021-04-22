@@ -7,10 +7,31 @@ const Nav = (props) => {
 
   const { docs } = FetchData("products");
 
-  console.log(docs);
+  // console.log(docs);
 
   const computeCart = () => {
+    console.log(props.cartItems);
+    let items = []
+    for (let i=0; i<docs.length; i++){
+      if(props.cartItems.includes(docs[i].id)){
+        items.push({'id':docs[i].id,'doc':docs[i], 'total':0});
+      }
+    }
+    for(let i=0; i< items.length; i++){
+      let id = items[i]["id"];
+      let num = 0;
+      // console.log(id, , num);
+      for(let j=0; j<props.cartItems.length; j++){
+        if(id === props.cartItems[j]){
+          num++;
+        }
+      }
+      items[i]["total"] = num;
+    }
+    console.log(items);
+
   }
+
 
   const category = props.typeCategories.map((category) => (
     <li>
@@ -82,12 +103,11 @@ const Nav = (props) => {
               <ul className="navbar-nav d-flex justify-space-between">
                 {/* Cart ----------------------------------------------------- */}
                 {name != "User" && props.navShow.cart && (
-                  <li className="nav-item order-3 mx-2">
+                  <li className="nav-item order-3 mx-2" onClick={computeCart}>
                     <a 
                     className="nav-link" 
                     data-bs-toggle="modal" 
                     data-bs-target="#staticBackdrop"
-                    onClick={computeCart()}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
