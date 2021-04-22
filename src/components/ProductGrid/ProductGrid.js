@@ -19,7 +19,15 @@ const ProductGrid = () => {
           .map((product) => {
             console.log(product.file.prodName);
           })}
-      <Nav categories={category.typeImgs} />
+      <Nav
+        typeCategories={category.typeImgs}
+        brandCategories={category.brandImgs}
+        navShow={{
+          typeCat: true,
+          brandCat: true,
+          cart: false,
+        }}
+      />
       <div className="container my-5">
         <div class="row row-cols-1 row-cols-md-4 g-4">
           {docs &&

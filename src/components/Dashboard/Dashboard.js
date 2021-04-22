@@ -10,7 +10,8 @@ const Dashboard = () => {
     return (
         <>
             <Nav
-                categories={category.typeImgs}
+                typeCategories={category.typeImgs}
+                brandCategories={category.brandImgs}
                 navShow={
                     {
                         typeCat: true,
