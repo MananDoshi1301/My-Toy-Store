@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "../Nav";
+import AddProductDB from "./AddProductDB";
 import FetchData from "../FetchData";
 import { category } from "../Data/Data";
 
 const ProductGrid = () => {
+  let num = 0;
   const { docs } = FetchData("products"); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
   console.log(categoryType, itemType, docs);
   const [prodId, setProdId] = useState("");
+  const [uploadToCart, setUploadToCart] = useState(false);
+  const [cart, setCart] = useState({});
 
   const addProduct = (id) => {
     setProdId(id);
-  }
+    // setUploadToCart(true);
+    alert("Adding " + id);
+
+    if (cart.hasOwnProperty(id)) {
+      setCart(cart[id] + 1);
+    } else {
+      setCart();
+    }
+    console.log(cart);
+    // localStorage.setItem("userCart", cart);
+    // console.log(localStorage.getItem("userCart"), cart);
+  };
 
   return (
     <>
-      {docs &&
-        docs
-          .filter((doc) => {
-            return doc.file[categoryType] === itemType;
-          })
-          .map((product) => {
-            console.log(product.file.prodName);
-          })}
+      {uploadToCart && (
+        <AddProductDB id={prodId} resetAdded={setUploadToCart}></AddProductDB>
+      )}
       <Nav
         typeCategories={category.typeImgs}
         brandCategories={category.brandImgs}
@@ -72,11 +82,13 @@ const ProductGrid = () => {
                         </ul>
                         <div className={`text-end`}>
                           <button
-                            className={
-                              `btn btn-success
-                            ${localStorage.getItem('userName') === 'User' ? `disabled` : ""}
-                            `
+                            className={`btn btn-success
+                            ${
+                              localStorage.getItem("userName") === "User"
+                                ? `disabled`
+                                : ""
                             }
+                            `}
                             onClick={() => {
                               addProduct(product.id);
                             }}
