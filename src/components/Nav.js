@@ -4,9 +4,19 @@ import { user } from "./Data/Data";
 
 const Nav = (props) => {
 
-  const category = props.categories.map(category =>
+  const category = props.typeCategories.map(category =>
     <li>
       <Link to={`/product/prodType/${category.Name}`}>
+        <a className="dropdown-item fs-2 fw-bold">
+          {category.Name}
+        </a>
+      </Link>
+    </li>
+  );
+
+  const brandCategory = props.brandCategories.map(category =>
+    <li>
+      <Link to={`/product/prodBrand/${category.Name}`}>
         <a className="dropdown-item fs-2 fw-bold">
           {category.Name}
         </a>
@@ -45,9 +55,11 @@ const Nav = (props) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger fs-4">
         <div className="container-fluid">
-          <a className="navbar-brand fs-1 fw-bold">
+
+          <Link to="/" className="navbar-brand fs-1 fw-bold">
             MyToyStore
-          </a>
+          </Link>
+
 
           <button
             className="navbar-toggler"
@@ -60,20 +72,22 @@ const Nav = (props) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+
           <div classNameName="d-flex">
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav d-flex justify-space-between">
                 {/* Cart ----------------------------------------------------- */}
-                <li className="nav-item order-2 mx-4">
-                  <a className="nav-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                    </svg></a>
-                </li>
+                {props.navShow.cart &&
+                  <li className="nav-item order-3 mx-4">
+                    <a className="nav-link">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                      </svg></a>
+                  </li>}
                 {/* =========================================================== */}
 
                 {/* Username--------------------------------------------------- */}
-                <li className="nav-item order-1 mx-4 d-flex align-items-center">
+                <li className="nav-item order-2 mx-4 d-flex align-items-center">
                   {/* {user.name==="User" && } */}
                   {user.name === "User" ?
                     logSignUpDropDown : <a className="navbar-brand fs-4 fw-bold">Hello {user.name}!</a>}
@@ -101,6 +115,29 @@ const Nav = (props) => {
                     {/* ============================== */}
                   </ul>
                 </li>
+                {/* ========================================================== */}
+
+                {/* DropDown -------------------------------------------------- */}
+                {props.navShow.brandCat &&
+                  <li className="nav-item dropdown order-1">
+                    <a
+                      className="nav-link dropdown-toggle mx-3"
+                      id="navbarDropdownMenuLink"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      All Brands
+                    </a>
+                    <ul
+                      className="dropdown-menu bg-primary border border-5 border-dark"
+                      aria-labelledby="navbarDropdownMenuLink"
+                    >
+                      {/* Map here for categories display */}
+                      {brandCategory}
+                      {/* ============================== */}
+                    </ul>
+                  </li>}
                 {/* ========================================================== */}
               </ul>
 
