@@ -1,38 +1,111 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FetchData from "./FetchData";
 
 const Nav = (props) => {
   const [name, setName] = useState(localStorage.getItem("userName"));
-  set [cart, setCart] = useState([]);
+  let [cart, setCart] = useState([]);
+  const [cartModal, setCartModal] = useState(null);
+  const [priceChanged, setPriceChanged] = useState(false);
   const { docs } = FetchData("products");
 
   // console.log(docs);
 
   const computeCart = () => {
-    console.log(props.cartItems);
-    let items = []
-    for (let i=0; i<docs.length; i++){
-      if(props.cartItems.includes(docs[i].id)){
-        items.push({'id':docs[i].id,'doc':docs[i], 'total':0});
+    // console.log(props.cartItems, "priceChanged");
+    let items = [];
+    for (let i = 0; i < docs.length; i++) {
+      if (props.cartItems.includes(docs[i].id)) {
+        items.push({ id: docs[i].id, doc: docs[i], total: 0 });
       }
     }
-    for(let i=0; i< items.length; i++){
+    for (let i = 0; i < items.length; i++) {
       let id = items[i]["id"];
       let num = 0;
       // console.log(id, , num);
-      for(let j=0; j<props.cartItems.length; j++){
-        if(id === props.cartItems[j]){
+      for (let j = 0; j < props.cartItems.length; j++) {
+        if (id === props.cartItems[j]) {
           num++;
         }
       }
       items[i]["total"] = num;
     }
-    console.log(items);
+    // console.log(items);
     setCart(items);
-  }
+  };
 
+  useEffect(() => {
+    if (props.cartItems.length === 0) {
+      setCartModal(
+        <h1 className={`display-6 text-center`}>No Items to CheckOut!</h1>
+      );
+    } else {
+      setCartModal(
+        cart.map((obj) => {
+          {
+            // console.log(obj);
+          }
+          return (
+            <div
+              class="list-group-item list-group-item-action d-flex justify-content-between"
+              aria-current="true"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <div>
+                  <h4 class="mb-1 text-secondary">
+                    {obj["doc"]["file"]["prodName"]}
+                  </h4>
+                  {/*////*/}
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item fs-6 text-info fw-bolder">
+                      Brand: {obj["doc"]["file"]["prodBrand"]}
+                    </li>
+                    <li class="list-group-item fs-6 text-danger fw-bolder">
+                      MRP: {obj["doc"]["file"]["prodPrice"]}/-
+                    </li>
+                    {/* <li> */}
+                    <div
+                      class="btn-group btn-group-sm"
+                      role="group"
+                      aria-label="Basic mixed styles example"
+                    >
+                      <button type="button" class="btn btn-danger">
+                        -
+                      </button>
+                      <button type="button" class="btn btn-warning">
+                        {obj["total"]}
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onClick={() => {
+                          let index = cart.findIndex(
+                            (x) => x["id"] === obj["id"]
+                          );
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                    {/* </li> */}
+                  </ul>
+                  {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
+                </div>
+              </div>
+              <img
+                src={obj["doc"]["url"]}
+                className={`img-fluid w-25`}
+                alt=""
+              />
+              {/* <small>And some small print.</small> */}
+            </div>
+          );
+        })
+      );
+    }
+  }, [cart]);
 
+  // DropDown category map
   const category = props.typeCategories.map((category) => (
     <li>
       <Link to={`/product/prodType/${category.Name}`}>
@@ -41,6 +114,7 @@ const Nav = (props) => {
     </li>
   ));
 
+  // brandcategory map
   const brandCategory = props.brandCategories.map((category) => (
     <li>
       <Link to={`/product/prodBrand/${category.Name}`}>
@@ -104,10 +178,10 @@ const Nav = (props) => {
                 {/* Cart ----------------------------------------------------- */}
                 {name != "User" && props.navShow.cart && (
                   <li className="nav-item order-3 mx-2" onClick={computeCart}>
-                    <a 
-                    className="nav-link" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#staticBackdrop"
+                    <a
+                      className="nav-link"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -122,28 +196,52 @@ const Nav = (props) => {
                     </a>
 
                     {/* <!-- Modal --> */}
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                    <div
+                      class="modal fade"
+                      id="staticBackdrop"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      aria-labelledby="staticBackdropLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-scrollable ">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="staticBackdropLabel">
+                              My Cart
+                            </h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
                           </div>
                           <div class="modal-body">
-                            {<div class="list-group">
-                              <div class="list-group-item list-group-item-action" aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
-                                  <h5 class="mb-1">List group item heading</h5>  {/*////*/}
-                                  {/* <small>3 days ago</small> */}
-                                </div>
-                                <p class="mb-1">Some placeholder content in a paragraph.</p>
-                                <small>And some small print.</small>
-                              </div>                              
-                            </div>}
+                            <div class="list-group">{cartModal}</div>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
+                            <button
+                              type="button"
+                              className={`btn btn-secondary ${
+                                props.cartItems.length === 0 ? `disabled` : ""
+                              }`}
+                              data-bs-dismiss="modal"
+                              onClick={() => {
+                                props.setCartItems([]);
+                              }}
+                            >
+                              Clear Cart
+                            </button>
+                            <button
+                              type="button"
+                              className={`btn btn-success ${
+                                props.cartItems.length === 0 ? `disabled` : ""
+                              }`}
+                            >
+                              Place Order
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -153,38 +251,42 @@ const Nav = (props) => {
                 {/* =========================================================== */}
 
                 {/* Username--------------------------------------------------- */}
-                <li className="nav-item order-2 d-flex align-items-center">
-                  {/* {user.name==="User" && } */}
-                  {localStorage.getItem("userName") === "User" ? (
-                    logSignUpDropDown
-                  ) : (
-                    <a className="navbar-brand fs-4 fw-bold">
-                      Hello {localStorage.getItem("userName")}!
-                    </a>
-                  )}
-                </li>
+                {props.navShow.user && (
+                  <li className="nav-item order-2 d-flex align-items-center">
+                    {/* {user.name==="User" && } */}
+                    {localStorage.getItem("userName") === "User" ? (
+                      logSignUpDropDown
+                    ) : (
+                      <a className="navbar-brand fs-4 fw-bold">
+                        Hello {localStorage.getItem("userName")}!
+                      </a>
+                    )}
+                  </li>
+                )}
                 {/* =========================================================== */}
 
                 {/* DropDown -------------------------------------------------- */}
-                <li className="nav-item dropdown order-0">
-                  <a
-                    className="nav-link dropdown-toggle mx-3"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    All Games And Toys
-                  </a>
-                  <ul
-                    className="dropdown-menu bg-primary border border-5 border-dark"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    {/* Map here for categories display */}
-                    {category}
-                    {/* ============================== */}
-                  </ul>
-                </li>
+                {props.navShow.typeCat && (
+                  <li className="nav-item dropdown order-0">
+                    <a
+                      className="nav-link dropdown-toggle mx-3"
+                      id="navbarDropdownMenuLink"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      All Games And Toys
+                    </a>
+                    <ul
+                      className="dropdown-menu bg-primary border border-5 border-dark"
+                      aria-labelledby="navbarDropdownMenuLink"
+                    >
+                      {/* Map here for categories display */}
+                      {category}
+                      {/* ============================== */}
+                    </ul>
+                  </li>
+                )}
                 {/* ========================================================== */}
 
                 {/* DropDown -------------------------------------------------- */}
@@ -211,7 +313,7 @@ const Nav = (props) => {
                 )}
                 {/* ========================================================== */}
               </ul>
-              {name != "User" && (
+              {props.navShow.user && name != "User" && (
                 <button
                   className={`btn btn-warning ms-3`}
                   onClick={() => {

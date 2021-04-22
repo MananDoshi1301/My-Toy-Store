@@ -4,7 +4,7 @@ import Nav from "../Nav";
 import FetchData from "../FetchData";
 import { category } from "../Data/Data";
 
-const ProductGrid = ({cartItems,setCartItems}) => {
+const ProductGrid = ({ cartItems, setCartItems }) => {
   let num = 0;
   const { docs } = FetchData("products"); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
@@ -16,7 +16,7 @@ const ProductGrid = ({cartItems,setCartItems}) => {
   const addProduct = (id) => {
     setProdId(id);
     alert("Adding " + id);
-    setCartItems([...cartItems,id]);
+    setCartItems([...cartItems, id]);
   };
 
   return (
@@ -27,6 +27,7 @@ const ProductGrid = ({cartItems,setCartItems}) => {
         navShow={{
           typeCat: true,
           brandCat: true,
+          user: false,
           cart: false,
         }}
         cartItems={cartItems}
@@ -72,11 +73,10 @@ const ProductGrid = ({cartItems,setCartItems}) => {
                         <div className={`text-end`}>
                           <button
                             className={`btn btn-success
-                            ${
-                              localStorage.getItem("userName") === "User"
+                            ${localStorage.getItem("userName") === "User"
                                 ? `disabled`
                                 : ""
-                            }
+                              }
                             `}
                             onClick={() => {
                               addProduct(product.id);
