@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import FetchData from "./FetchData";
 
 const Nav = (props) => {
   const [name, setName] = useState(localStorage.getItem("userName"));
+
+  const { docs } = FetchData("products");
+
+  console.log(docs);
+
+  const computeCart = () => {
+  }
 
   const category = props.typeCategories.map((category) => (
     <li>
@@ -75,7 +83,12 @@ const Nav = (props) => {
                 {/* Cart ----------------------------------------------------- */}
                 {name != "User" && props.navShow.cart && (
                   <li className="nav-item order-3 mx-2">
-                    <a className="nav-link">
+                    <a 
+                    className="nav-link" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#staticBackdrop"
+                    onClick={computeCart()}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -87,6 +100,34 @@ const Nav = (props) => {
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                       </svg>
                     </a>
+
+                    {/* <!-- Modal --> */}
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            {<div class="list-group">
+                              <div class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1">List group item heading</h5>
+                                  {/* <small>3 days ago</small> */}
+                                </div>
+                                <p class="mb-1">Some placeholder content in a paragraph.</p>
+                                <small>And some small print.</small>
+                              </div>                              
+                            </div>}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </li>
                 )}
                 {/* =========================================================== */}
