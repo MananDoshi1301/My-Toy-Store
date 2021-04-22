@@ -15,7 +15,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
 
   const addProduct = (id) => {
     setProdId(id);
-    alert("Adding " + id);
+    alert("Product Added Successfully");
     setCartItems([...cartItems, id]);
   };
 
@@ -72,7 +72,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                         </ul>
                         <div className={`text-end`}>
                           <button
-                            className={`btn btn-success
+                            className={`btn btn-outline-success
                             ${localStorage.getItem("userName") === "User"
                                 ? `disabled`
                                 : ""

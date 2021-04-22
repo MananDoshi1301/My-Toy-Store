@@ -30,7 +30,7 @@ const Dashboard = ({ cartItems, setCartItems }) => {
             />
             <Carousel></Carousel>
             <div className="container-fluid mb-5">
-                <AgeCategory age={category.age} colors={colors}></AgeCategory>
+                {/* <AgeCategory age={category.age} colors={colors}></AgeCategory> */}
                 <TypeCategory typeObj={category.typeImgs}></TypeCategory>
                 <BrandCategory brandObj={category.brandImgs}></BrandCategory>
             </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PlaceOrder from "./Dashboard/PlaceOrder";
 import FetchData from "./FetchData";
 
 const Nav = (props) => {
@@ -7,10 +8,21 @@ const Nav = (props) => {
   let [cart, setCart] = useState([]);
   const [cartModal, setCartModal] = useState(null);
   const [priceChanged, setPriceChanged] = useState(false);
+  const [finalOrder, setFinalOrder] = useState({});
+  const [placeOrder, setPlaceOrder] = useState(false);
   const { docs } = FetchData("products");
 
   // console.log(docs);
 
+  const finalizeCart = () => {
+    let item = [];
+    for (let i = 0; i < cart.length; i++) {
+      let obj = "item " + i;
+      item.push(cart[i]["doc"], cart[i]["total"]);
+    }
+    setFinalOrder({ userId: localStorage.getItem("userId"), order: item });
+    console.log(finalOrder);
+  };
   const computeCart = () => {
     // console.log(props.cartItems, "priceChanged");
     let items = [];
@@ -32,6 +44,21 @@ const Nav = (props) => {
     }
     // console.log(items);
     setCart(items);
+    console.log(cart);
+  };
+
+  const removeItem = (id) => {
+    const index = props.cartItems.indexOf(id);
+    if (index > -1) {
+      props.cartItems.splice(index, 1);
+    }
+    computeCart();
+  };
+
+  const addItem = (id) => {
+    let items = props.cartItems;
+    items.push(id);
+    computeCart();
   };
 
   useEffect(() => {
@@ -60,36 +87,44 @@ const Nav = (props) => {
                     <li class="list-group-item fs-6 text-info fw-bolder">
                       Brand: {obj["doc"]["file"]["prodBrand"]}
                     </li>
+                    <li class="list-group-item fs-6 text-warning fw-bolder">
+                      Color: {obj["doc"]["file"]["prodColor"]}
+                    </li>
                     <li class="list-group-item fs-6 text-danger fw-bolder">
                       MRP: {obj["doc"]["file"]["prodPrice"]}/-
                     </li>
-                    {/* <li> */}
-                    <div
-                      class="btn-group btn-group-sm"
-                      role="group"
-                      aria-label="Basic mixed styles example"
-                    >
-                      <button type="button" class="btn btn-danger">
-                        -
-                      </button>
-                      <button type="button" class="btn btn-warning">
-                        {obj["total"]}
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-success"
-                        onClick={() => {
-                          let index = cart.findIndex(
-                            (x) => x["id"] === obj["id"]
-                          );
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
-                    {/* </li> */}
                   </ul>
-                  {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
+
+                  <div
+                    class="btn-group btn-group-sm ms-2"
+                    role="group"
+                    aria-label="Basic mixed styles example"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onClick={() => {
+                        removeItem(obj["id"]);
+                      }}
+                    >
+                      -
+                    </button>
+                    <button type="button" class="btn btn-warning">
+                      {obj["total"]}
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      onClick={() => {
+                        addItem(obj["id"]);
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className={`ms-2 mt-2 fs-5`}>
+                    Sub-total: {obj["total"] * obj["doc"]["file"]["prodPrice"]}
+                  </div>
                 </div>
               </div>
               <img
@@ -155,7 +190,7 @@ const Nav = (props) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger fs-4">
-        <div className="container-fluid">
+        <div className="container">
           <Link to="/" className="navbar-brand fs-1 fw-bold">
             MyToyStore
           </Link>
@@ -239,9 +274,23 @@ const Nav = (props) => {
                               className={`btn btn-success ${
                                 props.cartItems.length === 0 ? `disabled` : ""
                               }`}
+                              onClick={() => {
+                                finalizeCart();
+                                setPlaceOrder(true);
+                                setCart([]);
+                                props.setCartItems([]);
+                                computeCart();
+                              }}
                             >
                               Place Order
                             </button>
+                            {placeOrder && (
+                              <PlaceOrder
+                                order={finalOrder}
+                                setOrder={setFinalOrder}
+                                setPlaceOrder={setPlaceOrder}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
