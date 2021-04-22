@@ -70,6 +70,9 @@ const LogSign = () => {
         alert("User logged in successfully!");
         user.name = name;
         user.id = id;
+        localStorage.setItem("userName", user.name);
+        localStorage.setItem("userId", user.id);
+        alert(localStorage.getItem("userName"));
         history.push("/");
       } else {
         alert("Email or password is incorrect!");
