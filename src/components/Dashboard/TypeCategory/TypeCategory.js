@@ -9,10 +9,10 @@ const TypeCategory = (props) => {
             <div class="card shadow p-0 mb-5 bg-body rounded">
                 <Link to={`/product/prodType/${obj.Name}`}>
                     <img src={obj.img} class="card-img-top" alt={obj.Name}></img>
-                    <div class="card-body text-center ">
-                        <p class={`card-title fs-3 ${styles.bangers}`}>{obj.Name}</p>
-                    </div>
                 </Link>
+                <div class="card-body text-center">
+                    <p class={`card-title fs-3 ${styles.bangers}`}>{obj.Name}</p>
+                </div>
             </div>
         </div>
     })
