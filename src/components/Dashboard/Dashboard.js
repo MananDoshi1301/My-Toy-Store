@@ -9,7 +9,14 @@ import { colors, category } from "../Data/Data";
 const Dashboard = () => {
     return (
         <>
-            <Nav categories={category.typeImgs}></Nav>
+            <Nav
+                categories={category.typeImgs}
+                navShow={
+                    {
+                        typeCat: true,
+                        brandCat: false,
+                        cart: true
+                    }} />
             <Carousel></Carousel>
             <div className="container-fluid mb-5">
                 <AgeCategory age={category.age} colors={colors}></AgeCategory>
