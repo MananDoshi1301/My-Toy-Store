@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Nav = (props) => {
   const [name, setName] = useState(localStorage.getItem("userName"));
-  useEffect(() => {}, [name]);
-  console.log(name);
+
   const category = props.typeCategories.map((category) => (
     <li>
       <Link to={`/product/prodType/${category.Name}`}>

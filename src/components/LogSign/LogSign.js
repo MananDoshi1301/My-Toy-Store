@@ -72,13 +72,11 @@ const LogSign = () => {
         user.id = id;
         localStorage.setItem("userName", user.name);
         localStorage.setItem("userId", user.id);
-        alert(localStorage.getItem("userName"));
         history.push("/");
       } else {
         alert("Email or password is incorrect!");
       }
     }
-    console.log(details);
   };
 
   return (
