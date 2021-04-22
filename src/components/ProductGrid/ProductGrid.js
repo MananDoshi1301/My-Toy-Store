@@ -11,6 +11,14 @@ const ProductGrid = () => {
 
   return (
     <>
+      {docs &&
+        docs
+          .filter((doc) => {
+            return doc.file[categoryType] === itemType;
+          })
+          .map((product) => {
+            console.log(product.file.prodName);
+          })}
       <Nav categories={category.typeImgs} />
       <div className="container my-5">
         <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -22,7 +30,7 @@ const ProductGrid = () => {
               .map((product) => {
                 return (
                   <div class="col">
-                    <div class="card h-100">
+                    <div class="card">
                       <img
                         src={product.url}
                         class="card-img-top img-fluid"
@@ -30,9 +38,30 @@ const ProductGrid = () => {
                       />
                       <div class="card-body">
                         <h5 class="card-title">{product.file.prodName}</h5>
-                        <a href="#" class="btn btn-primary">
-                          Add To Cart
-                        </a>
+
+                        <ul class="list-group list-group-flush">
+                          {product.file.prodBrand && (
+                            <li class="list-group-item text-muted fw-bolder">
+                              Brand:&nbsp;
+                              <span className={`text-danger`}>
+                                {product.file.prodBrand}
+                              </span>
+                            </li>
+                          )}
+                          {product.file.prodPrice && (
+                            <li class="list-group-item text-muted fw-bolder">
+                              MRP:&nbsp;
+                              <span className={`text-danger`}>
+                                {product.file.prodPrice}/-
+                              </span>
+                            </li>
+                          )}
+                        </ul>
+                        <div className={`text-end`}>
+                          <a href="#" class="btn btn-success">
+                            Add To Cart
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
