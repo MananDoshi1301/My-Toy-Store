@@ -28,7 +28,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
           typeCat: true,
           brandCat: true,
           user: false,
-          cart: false,
+          cart: true,
         }}
         cartItems={cartItems}
         setCartItems={setCartItems}

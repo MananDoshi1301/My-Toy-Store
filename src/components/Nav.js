@@ -11,6 +11,7 @@ const Nav = (props) => {
   let [price, setPrice] = useState(0);
   const [finalOrder, setFinalOrder] = useState({});
   const [placeOrder, setPlaceOrder] = useState(false);
+  const [showCartPrice, setShowCartPrice] = useState(false);
   const { docs } = FetchData("products");
 
   // console.log(docs);
@@ -55,6 +56,7 @@ const Nav = (props) => {
     for (let i = 0; i < items.length; i++) {
       sum += items[i]["total"] * items[i]["doc"]["file"]["prodPrice"];
     }
+
     console.log(sum);
     setPrice(sum);
   };
@@ -151,6 +153,15 @@ const Nav = (props) => {
       );
     }
   }, [cart]);
+
+  useEffect(()=>{
+    if (price===0){
+      setShowCartPrice(false)
+    }
+    else{
+      setShowCartPrice(true);
+    }
+  },[price])
 
   // DropDown category map
   const category = props.typeCategories.map((category) => (
@@ -269,9 +280,9 @@ const Nav = (props) => {
                             <div class="list-group">{cartModal}</div>
                           </div>
                           <div class="modal-footer">
-                            <div className={`${styles.marEnd} fw-bold`}>
-                              <span>Total: {price}</span>
-                            </div>
+                            { <div className={`${styles.marEnd} fw-bold`}>
+                                {props.cartItems.length==0?"":<span>Total: {price}</span>}
+                              </div>}
                             <button
                               type="button"
                               className={`btn btn-secondary ${
@@ -294,6 +305,7 @@ const Nav = (props) => {
                                 setPlaceOrder(true);
                                 setCart([]);
                                 props.setCartItems([]);
+                                // setPrice(0);
                                 computeCart();
                               }}
                             >
