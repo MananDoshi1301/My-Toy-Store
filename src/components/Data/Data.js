@@ -20,11 +20,11 @@ import nerf from '../../imagesForDB/nerf.jpg'
 
 // =================================================================================
 const user = {
-  name:"User",
-  email:null,
-  password:null,
-  contact:null,
-  id:null,
+  name: "User",
+  email: null,
+  password: null,
+  contact: null,
+  id: null,
 }
 
 const colors = ["danger", "info", "primary", "success", "secondary"];
@@ -32,27 +32,27 @@ const colors = ["danger", "info", "primary", "success", "secondary"];
 const category = {
   age: ["8", "13", "3 - 4", "5 - 6", "7 - 9", "10 - 12"],
   typeImgs: [
-    { Name: "Action Figures", img: actionFigures, value:"Action Figures" },
-    { Name: "Dolls", img: dolls, value:"Dolls" },
-    { Name: "Games And Puzzles", img: gamesAndPuzzles, value:"Games and Puzzles" },
-    { Name: "Gifts", img: gifts, value:"Gifts" },
-    { Name: "Soft Toys", img: softToys, value:"Soft Toys" },
-    { Name: "Vehicle and Remote Control", img: vehicleAndRemoteControl, value:"Vehicle and Remote Control" },
+    { Name: "Action Figures", img: actionFigures, value: "Action Figures" },
+    { Name: "Dolls", img: dolls, value: "Dolls" },
+    { Name: "Games", img: gamesAndPuzzles, value: "Games" },
+    { Name: "Gifts", img: gifts, value: "Gifts" },
+    { Name: "Soft Toys", img: softToys, value: "Soft Toys" },
+    { Name: "Vehicle and Remote Control", img: vehicleAndRemoteControl, value: "Vehicle and Remote Control" },
   ],
   brandImgs: [
-    { Name: "Barbie", img: barbie, value:"Barbie" },
-    { Name: "Hotwheels", img: hotwheels, value:"Hotwheels" },
-    { Name: "Lego", img: lego, value:"Lego" },
-    { Name: "Mattel", img: mattel, value:"Mattel" },
-    { Name: "Mothercare", img: mothercare, value:"Mothercare" },
-    { Name: "Nerf", img: nerf, value:"Nerf" },
+    { Name: "Barbie", img: barbie, value: "Barbie" },
+    { Name: "Hotwheels", img: hotwheels, value: "Hotwheels" },
+    { Name: "Lego", img: lego, value: "Lego" },
+    { Name: "Mattel", img: mattel, value: "Mattel" },
+    { Name: "Mothercare", img: mothercare, value: "Mothercare" },
+    { Name: "Nerf", img: nerf, value: "Nerf" },
   ],
-  color: [ 
-    {Name: "Black", value:"Black" },
-    {Name: "Blue", value:"Blue" },
-    {Name: "Gray", value:"Gray" },
-    {Name: "Green", value:"Green" },
+  color: [
+    { Name: "Black", value: "Black" },
+    { Name: "Blue", value: "Blue" },
+    { Name: "Gray", value: "Gray" },
+    { Name: "Green", value: "Green" },
   ]
 };
 
-export {colors, category, user};
+export { colors, category, user };
