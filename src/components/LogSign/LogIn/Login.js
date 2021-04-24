@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Login.module.css';
 import GoogleLogin from 'react-google-login';
 
-const Login = ( { changeDetail, onSubmit } ) => {
+const Login = ( { changeDetail, onSubmit, googleAuth } ) => {
 
     const responseGoogle = (response) => {
         console.log(response);
@@ -46,7 +46,7 @@ const Login = ( { changeDetail, onSubmit } ) => {
 
                                         className={``}
                                         buttonText="Sign In With Google"
-                                        onSuccess={responseGoogle}
+                                        onSuccess={googleAuth}
                                         onFailure={responseGoogle}
                                         cookiePolicy={'single_host_origin'}
                                     />
