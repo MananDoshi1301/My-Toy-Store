@@ -45,7 +45,7 @@ const Login = ( { changeDetail, onSubmit, googleAuth } ) => {
                                         clientId="905129563250-7qetaoaou55qo4sk1i5h9q442vfvjr1f.apps.googleusercontent.com"
 
                                         className={``}
-                                        buttonText="Sign In With Google"
+                                        buttonText="SignIn With Google"
                                         onSuccess={googleAuth}
                                         onFailure={responseGoogle}
                                         cookiePolicy={'single_host_origin'}
