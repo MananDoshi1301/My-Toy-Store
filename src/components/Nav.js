@@ -213,16 +213,21 @@ const Nav = (props) => {
   );
 
   const imagelogedinDropDown = (
-    <div class="dropdown">      
+    <div class="dropdown me-4">      
       <a class="navbar-brand dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
       <img src={localStorage.getItem("userImg")} 
       className={`rounded-circle border border-light border-3`} alt="" width="60" height="60" />
     </a>
 
-      <ul class="dropdown-menu  dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="dropdownMenuLink">
-        {/* <li><a class="dropdown-item">Action</a></li> */}
-        <li><h2 class="dropdown-header fs-5 fw-bold">Hello {localStorage.getItem("userName")}!</h2></li>
-        <li><a class="dropdown-item fs-6"
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 border border-4 border-dark" aria-labelledby="dropdownMenuLink">
+        <li>
+          <h2 class="dropdown-header fs-4 fw-bold">
+          <span className={`${styles.architectDaughters}`}>Hello {localStorage.getItem("userName")} !</span></h2>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item fs-5">Order History</a>
+        </li>
+        <li><a class="dropdown-item fs-5"
           onClick={() => {
             localStorage.setItem("userName", "User");
             localStorage.setItem("userId", "");
