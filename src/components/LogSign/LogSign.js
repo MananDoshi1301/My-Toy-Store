@@ -5,6 +5,7 @@ import Login from "./LogIn/Login";
 import NewUserProgress from "./Signup/NewUserProgress";
 import Signup from "./Signup/Signup";
 import { user } from "../Data/Data";
+import styles from "../component.module.css"
 
 const LogSign = () => {
   const { docs } = FetchData("userDetails");
@@ -93,7 +94,7 @@ const LogSign = () => {
     <div className={"overflow-hidden"}>
       <nav className="navbar navbar-dark bg-danger">
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand fw-bold fs-1">
+          <Link to="/" className={`navbar-brand fw-bold fs-1 ${styles.architectDaughters}`}>
             MyToyStore
           </Link>
           <div>

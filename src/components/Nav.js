@@ -241,7 +241,7 @@ const Nav = (props) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger fs-4">
         <div className="container">
-          <Link to="/" className="navbar-brand fs-1 fw-bold">
+          <Link to="/" className={`navbar-brand fs-1 fw-bold ${styles.architectDaughters}`}>
             MyToyStore
           </Link>
 
