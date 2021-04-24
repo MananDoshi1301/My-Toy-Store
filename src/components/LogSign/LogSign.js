@@ -84,7 +84,7 @@ const LogSign = () => {
     localStorage.setItem("userName", obj["profileObj"]["name"]);
     localStorage.setItem("userId", obj["profileObj"]["googleId"]);
     localStorage.setItem("userImg", obj["profileObj"]["imageUrl"]);
-    //history.push("/");
+    history.push("/");
   }
 
   return (
