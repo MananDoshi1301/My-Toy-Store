@@ -79,6 +79,14 @@ const LogSign = () => {
     }
   };
 
+  const grabfromgoogleAuth=(obj)=>{
+    console.log(obj["profileObj"]);
+    localStorage.setItem("userName", obj["profileObj"]["name"]);
+    localStorage.setItem("userId", obj["profileObj"]["googleId"]);
+    localStorage.setItem("userImg", obj["profileObj"]["imageUrl"]);
+    //history.push("/");
+  }
+
   return (
     // <Router>
     //     <Switch>
@@ -118,7 +126,7 @@ const LogSign = () => {
       </div>
 
       {login ? (
-        <Login changeDetail={handleInputChange} onSubmit={submitData} />
+        <Login changeDetail={handleInputChange} onSubmit={submitData} googleAuth={grabfromgoogleAuth} />
       ) : (
         <Signup changeDetail={handleInputChange} onSubmit={submitData} />
       )}
