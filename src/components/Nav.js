@@ -210,6 +210,31 @@ const Nav = (props) => {
     </li>
   );
 
+  const imagelogedinDropDown = (
+    <div class="dropdown">      
+      <a class="navbar-brand dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src={localStorage.getItem("userImg")} 
+      className={`rounded-circle border border-light border-3`} alt="" width="60" height="60" />
+    </a>
+
+      <ul class="dropdown-menu  dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="dropdownMenuLink">
+        {/* <li><a class="dropdown-item">Action</a></li> */}
+        <li><h2 class="dropdown-header fs-5 fw-bold">Hello {localStorage.getItem("userName")}!</h2></li>
+        <li><a class="dropdown-item fs-6"
+          onClick={() => {
+            localStorage.setItem("userName", "User");
+            localStorage.setItem("userId", "");
+            localStorage.setItem("userCart", JSON.stringify([]));
+            localStorage.setItem("userImg", "")
+            props.setCartItems([]);
+            setName("User");
+          }}
+        >LogOut</a>
+        </li>
+      </ul>
+    </div>
+  )
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger fs-4">
@@ -332,14 +357,19 @@ const Nav = (props) => {
                     {/* {user.name==="User" && } */}
                     {localStorage.getItem("userName") === "User" ? (
                       logSignUpDropDown
-                    ) : (
+                    ) : localStorage.getItem("userImg") != ""?(imagelogedinDropDown):
                       <a className="navbar-brand fs-4 fw-bold">
-                        Hello {localStorage.getItem("userName")}!
+                        Hello {localStorage.getItem("userName")}
+                        {!localStorage.getItem("userImg")?"!":""}
                       </a>
-                    )}
+                    }
                   </li>
                 )}
                 {/* =========================================================== */}
+
+                <li className="nav-item order-2 d-flex align-items-center">
+                  {/* {imagelogedinDropDown} */}
+                </li>
 
                 {/* DropDown -------------------------------------------------- */}
                 {props.navShow.typeCat && (
@@ -389,7 +419,7 @@ const Nav = (props) => {
                 )}
                 {/* ========================================================== */}
               </ul>
-              {props.navShow.user && name != "User" && (
+              {props.navShow.user && name != "User" && localStorage.getItem("userImg") == "" && (
                 <button
                   className={`btn btn-warning ms-3`}
                   onClick={() => {
