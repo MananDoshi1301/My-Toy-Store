@@ -68,14 +68,14 @@ const LogSign = () => {
         }
       }
       if (oldUser) {
-        alert("User logged in successfully!");
         user.name = name;
         user.id = id;
         localStorage.setItem("userName", user.name);
-        localStorage.setItem("userId", user.id);
+        localStorage.setItem("userId", user.id);        
         history.push("/");
       } else {
-        alert("Email or password is incorrect!");
+        // alert("Email or password is incorrect!");        
+        return ["Error","Email or password is incorrect!","","danger"];
       }
     }
   };
