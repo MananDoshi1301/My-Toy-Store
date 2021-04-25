@@ -229,6 +229,13 @@ const Nav = (props) => {
         </li>
         <li><a class="dropdown-item fs-5"
           onClick={() => {
+            const prevUser = {
+              name:localStorage.getItem("userName"),
+              id:localStorage.getItem("userId"),
+              cart:props.cartItems,
+            }
+            localStorage.setItem("prevUser",JSON.stringify(prevUser));
+            console.log(JSON.parse(localStorage.getItem("prevUser")));
             localStorage.setItem("userName", "User");
             localStorage.setItem("userId", "");
             localStorage.setItem("userCart", JSON.stringify([]));
