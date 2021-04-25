@@ -43,7 +43,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
               .map((product) => {
                 return (
                   <div class="col">
-                    <div class="card">
+                    <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                       <img
                         src={product.url}
                         class="card-img-top img-fluid"
