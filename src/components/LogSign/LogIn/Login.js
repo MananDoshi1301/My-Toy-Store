@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import classes from './Login.module.css';
 import GoogleLogin from 'react-google-login';
 
-import EventModal from "../../EventModal";
-
 const Login = ( { changeDetail, onSubmit, googleAuth } ) => {
 
     const responseGoogle = (response) => {
         console.log(response);
     }
-
-    const [error, setError] = useState([]);
 
     return (
         <div>
@@ -40,13 +36,8 @@ const Login = ( { changeDetail, onSubmit, googleAuth } ) => {
                             <div className={`d-grid mt-4`}>
                                 <button
                                     className="btn btn-warning"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    onClick={()=>{
-                                        let resp = onSubmit();
-                                        setError(resp);
-                                    }}
+                                    onClick={onSubmit}
                                 >Login</button>
-                                <EventModal details={error}/>
                                 <p className={`text-center fw-bold mt-3`}>OR</p>
                                 <div className={`text-center`}>
                                     <GoogleLogin
