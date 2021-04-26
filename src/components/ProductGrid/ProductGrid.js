@@ -91,6 +91,62 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         <div class="row row-cols-1 row-cols-md-3 g-4">
           {docs && items}
           {console.log(items)}
+          {docs &&
+            docs
+              .filter((doc) => {
+                return doc.file[categoryType] === itemType;
+              })
+              .map((product) => {
+                return (
+                  <div class="col">
+                    <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+                      <img
+                        src={product.url}
+                        class="card-img-top img-fluid"
+                        alt={product.file.prodName}
+                      />
+                      <div class="card-body">
+                        <h5 class="card-title">{product.file.prodName}</h5>
+
+                        <ul class="list-group list-group-flush">
+                          {product.file.prodBrand && (
+                            <li class="list-group-item text-muted fw-bolder">
+                              Brand:&nbsp;
+                              <span className={`text-danger`}>
+                                {product.file.prodBrand}
+                              </span>
+                            </li>
+                          )}
+                          {product.file.prodPrice && (
+                            <li class="list-group-item text-muted fw-bolder">
+                              MRP:&nbsp;
+                              <span className={`text-danger`}>
+                                {product.file.prodPrice}/-
+                              </span>
+                            </li>
+                          )}
+                        </ul>
+                        <div className={`text-end`}>
+                          <button
+                            className={`btn btn-outline-success
+                            ${localStorage.getItem("userName") === "User"
+                                ? `disabled`
+                                : ""
+                              }
+                            `}
+                            onClick={() => {
+                              addProduct(product.id);
+                            }}
+                          >
+                            Add To Cart
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+>>>>>>> a8a68b98c4525865909484a2f1c71eef1f0e7ae6
         </div>
       </div>
     </>
