@@ -8,18 +8,17 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 //     showError
 // }
 
-const Alert = ({error, setError}) => {
+const Alert = ({ error, setError }) => {
 
     return (
         <>
-            {<SweetAlert 
-            type={error["state"]}
-            title={error["title"]}                        
-            onConfirm={()=>{setError({...error,showError:false})}}
-            timeout={3000}
+            {<SweetAlert
+                type={error["state"]}
+                title={error["title"]}
+                onConfirm={() => { setError({ ...error, showError: false }) }}
             >
                 {error["text"]}
-        </SweetAlert>}
+            </SweetAlert>}
         </>
     )
 }
