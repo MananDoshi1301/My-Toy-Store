@@ -78,7 +78,9 @@ const Nav = (props) => {
   useEffect(() => {
     if (props.cartItems.length === 0) {
       setCartModal(
-        <h1 className={`display-6 text-center`}>No Items to CheckOut!</h1>
+        <div className={`display-3 text-center text-light fw-bold d-flex justify-content-center align-items-center`}>
+          <span>No Items to CheckOut!</span> 
+        </div>
       );
     } else {
       setCartModal(
@@ -88,16 +90,16 @@ const Nav = (props) => {
           }
           return (
             <div
-              class="list-group-item list-group-item-action d-flex justify-content-between"
+              class="list-group-item list-group-item-action d-flex justify-content-between "
               aria-current="true"
             >
-              <div class="d-flex w-100 justify-content-between">
+              <div class="d-flex w-100">
                 <div>
-                  <h4 class="mb-1 text-secondary">
+                  <h4 class="mb-1 text-secondary display-5 mb-4">
                     {obj["doc"]["file"]["prodName"]}
                   </h4>
                   {/*////*/}
-                  <ul class="list-group list-group-flush">
+                  <ul class="list-group list-group-flush my-3 fs-4">
                     <li class="list-group-item fs-6 text-info fw-bolder">
                       Brand: {obj["doc"]["file"]["prodBrand"]}
                     </li>
@@ -137,7 +139,7 @@ const Nav = (props) => {
                     </button>
                   </div>
                   <div className={`ms-2 mt-2 fs-6`}>
-                    Sub-total: {obj["total"] * obj["doc"]["file"]["prodPrice"]}
+                    Sub-total: {obj["total"] * obj["doc"]["file"]["prodPrice"]}.00/-
                   </div>
                 </div>
               </div>
@@ -210,11 +212,48 @@ const Nav = (props) => {
     </li>
   );
 
+  const imagelogedinDropDown = (
+    <div class="dropdown me-4">      
+      <a class="navbar-brand dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src={localStorage.getItem("userImg")} 
+      className={`rounded-circle border border-light border-3`} alt="" width="60" height="60" />
+    </a>
+
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 border border-4 border-dark" aria-labelledby="dropdownMenuLink">
+        <li>
+          <h2 class="dropdown-header fs-4 fw-bold">
+          <span className={`${styles.architectDaughters}`}>Hello {localStorage.getItem("userName")} !</span></h2>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item fs-5">Order History</a>
+        </li>
+        <li><a class="dropdown-item fs-5"
+          onClick={() => {
+            const prevUser = {
+              name:localStorage.getItem("userName"),
+              id:localStorage.getItem("userId"),
+              cart:props.cartItems,
+            }
+            localStorage.setItem("prevUser",JSON.stringify(prevUser));
+            console.log(JSON.parse(localStorage.getItem("prevUser")));
+            localStorage.setItem("userName", "User");
+            localStorage.setItem("userId", "");
+            localStorage.setItem("userCart", JSON.stringify([]));
+            localStorage.setItem("userImg", "")
+            props.setCartItems([]);
+            setName("User");
+          }}
+        >LogOut</a>
+        </li>
+      </ul>
+    </div>
+  )
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger fs-4">
         <div className="container">
-          <Link to="/" className="navbar-brand fs-1 fw-bold">
+          <Link to="/" className={`navbar-brand fs-1 fw-bold ${styles.architectDaughters}`}>
             MyToyStore
           </Link>
 
@@ -263,29 +302,31 @@ const Nav = (props) => {
                       aria-labelledby="staticBackdropLabel"
                       aria-hidden="true"
                     >
-                      <div class="modal-dialog modal-dialog-scrollable ">
+                      <div class="modal-dialog modal-fullscreen">
                         <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">
+                          <div class="modal-header bg-warning">
+                            <h5 className={`modal-title display-4 text-light fw-bolder ${styles.indieFlower}`} id="staticBackdropLabel">
                               My Cart
                             </h5>
                             <button
                               type="button"
-                              class="btn-close"
+                              class="btn-close me-3"
                               data-bs-dismiss="modal"
                               aria-label="Close"
                             ></button>
                           </div>
-                          <div class="modal-body">
-                            <div class="list-group">{cartModal}</div>
+                          <div 
+                          className=
+                          {`modal-body bg-danger ${props.cartItems.length === 0?"d-flex justify-content-center align-items-center":""}`}>
+                            <div class="list-group gap-3">{cartModal}</div>
                           </div>
-                          <div class="modal-footer">
-                            { <div className={`${styles.marEnd} fw-bold`}>
-                                {props.cartItems.length==0?"":<span>Total: {price}</span>}
+                          <div class="modal-footer bg-warning">
+                            { <div className={`${styles.marEnd} text-start fw-bold`}>
+                                {props.cartItems.length==0?"":<span>Total: {price}.00/-</span>}
                               </div>}
                             <button
                               type="button"
-                              className={`btn btn-secondary ${
+                              className={`btn btn-lg btn-secondary ${
                                 props.cartItems.length === 0 ? `disabled` : ""
                               }`}
                               data-bs-dismiss="modal"
@@ -297,7 +338,7 @@ const Nav = (props) => {
                             </button>
                             <button
                               type="button"
-                              className={`btn btn-success ${
+                              className={`btn btn-lg btn-success ${
                                 props.cartItems.length === 0 ? `disabled` : ""
                               }`}
                               onClick={() => {
@@ -332,14 +373,19 @@ const Nav = (props) => {
                     {/* {user.name==="User" && } */}
                     {localStorage.getItem("userName") === "User" ? (
                       logSignUpDropDown
-                    ) : (
+                    ) : localStorage.getItem("userImg") != ""?(imagelogedinDropDown):
                       <a className="navbar-brand fs-4 fw-bold">
-                        Hello {localStorage.getItem("userName")}!
+                        Hello {localStorage.getItem("userName")}
+                        {!localStorage.getItem("userImg")?"!":""}
                       </a>
-                    )}
+                    }
                   </li>
                 )}
                 {/* =========================================================== */}
+
+                <li className="nav-item order-2 d-flex align-items-center">
+                  {/* {imagelogedinDropDown} */}
+                </li>
 
                 {/* DropDown -------------------------------------------------- */}
                 {props.navShow.typeCat && (
@@ -389,7 +435,7 @@ const Nav = (props) => {
                 )}
                 {/* ========================================================== */}
               </ul>
-              {props.navShow.user && name != "User" && (
+              {props.navShow.user && name != "User" && localStorage.getItem("userImg") == "" && (
                 <button
                   className={`btn btn-warning ms-3`}
                   onClick={() => {

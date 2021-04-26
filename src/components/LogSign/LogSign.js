@@ -4,12 +4,21 @@ import FetchData from "../FetchData";
 import Login from "./LogIn/Login";
 import NewUserProgress from "./Signup/NewUserProgress";
 import Signup from "./Signup/Signup";
+
+import Alert from '../Alert';
 import { user } from "../Data/Data";
+import styles from "../component.module.css"
 
 const LogSign = () => {
   const { docs } = FetchData("userDetails");
   const history = useHistory();
   let [login, setLogin] = useState(true);
+  const [error, setError] = useState({
+    title: "",
+    text: "",
+    state: "",
+    showError: false,
+  });
 
   const initialDetails = {
     fullName: null,
@@ -67,25 +76,46 @@ const LogSign = () => {
         }
       }
       if (oldUser) {
-        alert("User logged in successfully!");
+        // alert("User logged in successfully!");
+        setError({
+          ...error,          
+          showError:true,
+          title:"Success!",
+          text:"User logged in successfully",
+          state:"success",
+        });
         user.name = name;
         user.id = id;
         localStorage.setItem("userName", user.name);
-        localStorage.setItem("userId", user.id);
+        localStorage.setItem("userId", user.id);        
         history.push("/");
       } else {
-        alert("Email or password is incorrect!");
+        setError({
+          ...error,          
+          showError:true,
+          title:"Error!",
+          text:"Email or Password is Incorrect",
+          state:"error",
+        });        
       }
     }
   };
 
+  const grabfromgoogleAuth=(obj)=>{
+    console.log(obj["profileObj"]);
+    localStorage.setItem("userName", obj["profileObj"]["name"]);
+    localStorage.setItem("userId", obj["profileObj"]["googleId"]);
+    localStorage.setItem("userImg", obj["profileObj"]["imageUrl"]);
+    history.push("/");
+  }
+
   return (
-    // <Router>
-    //     <Switch>
+    <>
+    {error["showError"] && <Alert error={error} setError={setError} />}
     <div className={"overflow-hidden"}>
       <nav className="navbar navbar-dark bg-danger">
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand fw-bold fs-1">
+          <Link to="/" className={`navbar-brand fw-bold fs-1 ${styles.architectDaughters}`}>
             MyToyStore
           </Link>
           <div>
@@ -118,13 +148,12 @@ const LogSign = () => {
       </div>
 
       {login ? (
-        <Login changeDetail={handleInputChange} onSubmit={submitData} />
+        <Login changeDetail={handleInputChange} onSubmit={submitData} googleAuth={grabfromgoogleAuth} />
       ) : (
         <Signup changeDetail={handleInputChange} onSubmit={submitData} />
       )}
-    </div>
-    //     </Switch>
-    // </Router>
+    </div>    
+    </>
   );
 };
 
