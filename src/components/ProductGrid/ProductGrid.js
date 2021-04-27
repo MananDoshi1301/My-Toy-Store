@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Nav from "../Nav";
 import FetchData from "../FetchData";
 import { category } from "../Data/Data";
+import { motion } from "framer-motion";
 
 const ProductGrid = ({ cartItems, setCartItems }) => {
   let num = 0;
@@ -26,7 +27,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
     .map((product) => {
       return (
         <div class="col">
-          <div class="card">
+          <div class="card shadow-lg p-3 mb-5 bg-body rounded">
             <img
               src={product.url}
               class="card-img-top img-fluid"
@@ -88,11 +89,17 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         cartItems={cartItems}
         setCartItems={setCartItems}
       />
+    <motion.div
+      initial={{x:"100vw"}}
+      animate={{x:0}}
+      transition={{type:'spring', delay:0.3, duration:1, stiffness:130}}
+    >
       <div className="container my-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
           {docs && items}        
         </div>
       </div>
+    </motion.div>
     </>
   );
 };
