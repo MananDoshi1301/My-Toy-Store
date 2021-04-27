@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import classes from './Login.module.css';
 import GoogleLogin from 'react-google-login';
+import { motion } from "framer-motion";
 
-const Login = ( { changeDetail, onSubmit, googleAuth } ) => {
+const Login = ({ changeDetail, onSubmit, googleAuth }) => {
 
     const responseGoogle = (response) => {
         console.log(response);
     }
 
     return (
-        <div>
+        <motion.div
+            initial={{ x: "-100vw" }}
+            animate={{ x: 0 }}
+            transition={{
+                type: "spring",
+                delay: 0.3,
+                duration: 1,
+                stiffness: 130,
+            }}
+        >
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-4 offset-lg-4 mt-5">
@@ -56,7 +66,7 @@ const Login = ( { changeDetail, onSubmit, googleAuth } ) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
