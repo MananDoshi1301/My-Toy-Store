@@ -27,7 +27,10 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
     .map((product) => {
       return (
         <div class="col">
-          <div class="card shadow-lg p-3 mb-5 bg-body rounded">
+          <motion.div class="card shadow-lg p-3 mb-5 bg-body rounded"
+            whileHover={{ scale: 1.3, zIndex: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <img
               src={product.url}
               class="card-img-top img-fluid"
@@ -70,11 +73,11 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       );
     })
-    
+
   return (
     <>
       <Nav
@@ -89,17 +92,17 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         cartItems={cartItems}
         setCartItems={setCartItems}
       />
-    <motion.div
-      initial={{x:"100vw"}}
-      animate={{x:0}}
-      transition={{type:'spring', delay:0.3, duration:1, stiffness:130}}
-    >
-      <div className="container my-5">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          {docs && items}        
+      <motion.div
+        initial={{ x: "100vw" }}
+        animate={{ x: 0 }}
+        transition={{ type: 'spring', delay: 0.3, duration: 1, stiffness: 130 }}
+      >
+        <div className="container my-5">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            {docs && items}
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
     </>
   );
 };
