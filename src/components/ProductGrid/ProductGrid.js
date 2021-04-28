@@ -10,10 +10,10 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
   let { docs } = FetchData("products"); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
   const [prodId, setProdId] = useState("");
-  const [documents, setDocuments] = useState(null);
+  const [searchlist, setSearchList] = useState([]);
 
   // console.log(categoryType, itemType, docs, cartItems);
-  console.log(docs);
+  // console.log(docs);
 
   const LCS = (str1, str2) => {
     var rows = str1.split("");
@@ -50,23 +50,34 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
   const handleSearch = (e) => {
     let str = e.target.value;
     let docArray = [];
-    for (let count = 0; count < docs.length; count++) {
-      let match = LCS(str, docs[count]["file"]["prodName"]);
-      let obj = { doc: docs[count], totalMatch: match };
-      docArray.push(obj);
-    }
-    docArray.sort((a, b) => {
-      return -a.totalMatch + b.totalMatch;
-    });
-    let arr = [],
-      listArr = [];
-    for (let count = 0; count < docArray.length; count++) {
-      arr.push(docArray[count]["doc"]);
-      if (docArray[count]["totalMatch"] >= str.length - 1) {
-        listArr.push(docArray[count]["doc"]);
+    if (str.length >= 2) {
+      for (let count = 0; count < docs.length; count++) {
+        let match = LCS(
+          str.toLowerCase(),
+          docs[count]["file"]["prodName"].toLowerCase()
+        );
+        let obj = { doc: docs[count], totalMatch: match };
+        docArray.push(obj);
       }
+      docArray.sort((a, b) => {
+        return -a.totalMatch + b.totalMatch;
+      });
+      let arr = [],
+        listArr = [];
+      for (let count = 0; count < docArray.length; count++) {
+        arr.push(docArray[count]["doc"]);
+        if (docArray[count]["totalMatch"] >= str.length - 1) {
+          listArr.push(docArray[count]["doc"]);
+        }
+      }
+      if (listArr.length > 6) {
+        listArr.splice(7);
+      }
+      setSearchList(listArr);
+      console.log(arr, listArr);
+    } else {
+      setSearchList([]);
     }
-    console.log(arr, listArr);
   };
 
   const setItems = (docs) => {
@@ -146,7 +157,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       <nav class="navbar navbar-light bg-warning">
         <div class="container">
           <div></div>
-          <div class="d-flex">
+          <div class="">
             <input
               class="form-control me-2"
               type="search"
@@ -154,10 +165,19 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
               aria-label="Search"
               onChange={handleSearch}
             />
+            <motion.ul animate={{}} className="list-group">
+              {searchlist &&
+                searchlist.map((listItem) => {
+                  return (
+                    <li className="list-group-item list-group-item-action">
+                      {listItem["file"]["prodName"]}
+                    </li>
+                  );
+                })}
+            </motion.ul>
           </div>
         </div>
       </nav>
-
       <motion.div
         initial={{ x: "100vw" }}
         animate={{ x: 0 }}
