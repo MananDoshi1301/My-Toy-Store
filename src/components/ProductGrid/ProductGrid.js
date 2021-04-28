@@ -166,13 +166,22 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
               aria-label="Search"
               onChange={handleSearch}
             />
-            <motion.ul animate={{}} className={`list-group ${styles.overlay}`}>
+            <motion.ul
+              initial={{ x: 400 }}
+              animate={{ x: 0 }}
+              className={`list-group ${styles.overlay} `}
+            >
               {searchlist &&
                 searchlist.map((listItem) => {
                   return (
-                    <li className={`list-group-item list-group-item-action`}>
+                    <motion.li
+                      initial={{ y: "100vw" }}
+                      animate={{ y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className={`list-group-item list-group-item-action bg-primary text-white fw-bold border border-2 border-dark`}
+                    >
                       {listItem["file"]["prodName"]}
-                    </li>
+                    </motion.li>
                   );
                 })}
             </motion.ul>
