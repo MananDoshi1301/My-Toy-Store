@@ -4,6 +4,7 @@ import Nav from "../Nav";
 import FetchData from "../FetchData";
 import { category } from "../Data/Data";
 import { motion } from "framer-motion";
+import styles from "../component.module.css";
 
 const ProductGrid = ({ cartItems, setCartItems }) => {
   let num = 0;
@@ -90,7 +91,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
           <div class="col">
             <motion.div
               class="card shadow-lg p-3 mb-5 bg-body rounded"
-              whileHover={{ scale: 1.2, zIndex: 1 }}
+              whileHover={{ scale: 1.2 }}
               transition={{ duration: 0.4 }}
             >
               <img
@@ -165,11 +166,11 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
               aria-label="Search"
               onChange={handleSearch}
             />
-            <motion.ul animate={{}} className="list-group">
+            <motion.ul animate={{}} className={`list-group ${styles.overlay}`}>
               {searchlist &&
                 searchlist.map((listItem) => {
                   return (
-                    <li className="list-group-item list-group-item-action">
+                    <li className={`list-group-item list-group-item-action`}>
                       {listItem["file"]["prodName"]}
                     </li>
                   );

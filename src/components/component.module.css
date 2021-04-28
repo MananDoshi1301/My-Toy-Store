@@ -17,3 +17,9 @@
 .marEnd {
   margin-right: 1050px;
 }
+
+.overlay {
+  position: absolute;
+  right: 3.5vw;
+  z-index: 1000;
+}
