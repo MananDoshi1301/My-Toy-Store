@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "../Nav";
 import FetchData from "../FetchData";
@@ -10,9 +10,13 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
   const { docs } = FetchData("products"); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
   const [prodId, setProdId] = useState("");
+  const [documents, setDocuments] = useState(null);
 
   // console.log(categoryType, itemType, docs, cartItems);
-  console.log(categoryType, itemType, docs);
+  // console.log(categoryType, itemType, docs);
+
+  
+
 
   const addProduct = (id) => {
     setProdId(id);
@@ -20,7 +24,18 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
     setCartItems([...cartItems, id]);
   };
 
-  const items = docs
+  const handleSearch =(e)=>{
+    let str = e.target.value;
+    if(str.length === 1){
+      let docArray = docs;
+      console.log(str, docArray)
+    }
+  }
+
+  // let items = null;
+  const setItems = (docs) => {
+    console.log('setting items');
+    const items = docs
     .filter((doc) => {
       return doc.file[categoryType] == itemType;
     })
@@ -78,6 +93,10 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       );
     })
 
+    return items
+  }
+
+
   return (
     <>
       <Nav
@@ -92,14 +111,15 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         cartItems={cartItems}
         setCartItems={setCartItems}
       />
+      <input type="text" onChange={handleSearch}></input>
       <motion.div
         initial={{ x: "100vw" }}
         animate={{ x: 0 }}
         transition={{ type: 'spring', delay: 0.3, duration: 1, stiffness: 130 }}
       >
         <div className="container my-5">
-          <div class="row row-cols-1 row-cols-md-3 g-4">
-            {docs && items}
+          <div class="row row-cols-1 row-cols-md-3 g-4">            
+            {docs && setItems(docs)}
           </div>
         </div>
       </motion.div>
