@@ -5,6 +5,7 @@ import FetchData from "../FetchData";
 import { category } from "../Data/Data";
 import { motion } from "framer-motion";
 import styles from "../component.module.css";
+import SearchListNav from "./SearchListNav";
 
 const ProductGrid = ({ cartItems, setCartItems }) => {
   let num = 0;
@@ -80,8 +81,22 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       setSearchList([]);
     }
   };
+  
+  const setItems = (docs, category=null) => {
 
-  const setItems = (docs) => {
+    if(category != null){
+      if (category === 'name') {
+        docs.sort((a,b)=>{
+          return a["file"]["prodName"] - b["file"]["prodName"];
+        })
+      }
+      else if(category === 'price'){
+        docs.sort((a,b)=>{
+          return parseInt(a["file"]["prodPrice"]) - parseInt(b["file"]["prodPrice"]);
+        })
+      }      
+    }
+
     const items = docs
       .filter((doc) => {
         return doc.file[categoryType] == itemType;
@@ -155,44 +170,10 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         cartItems={cartItems}
         setCartItems={setCartItems}
       />
-      <nav class="navbar navbar-light bg-warning">
-        <div class="container">
-          <div></div>
-          <div class="">
-            <span className="fs-5 fw-bold ">
-              Search For Your Product
-            </span>
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              onChange={handleSearch}
-            />
-            <motion.ul
-              initial={{ x: 400 }}
-              animate={{ x: 0 }}
-              className={`list-group ${styles.overlay} `}
-            >
-              {searchlist &&
-                searchlist.map((listItem) => {
-                  return (
-                    <motion.li
-                      initial={{ y: "100vw" }}
-                      animate={{ y: 0 }}
-                      transition={{ }}
-                      whileHover={{scale:1.1}}
-                      className={`list-group-item list-group-item-action bg-primary text-white fw-bold border border-2 border-dark`}
-                    >
-                      {listItem["file"]["prodName"]}
-                    </motion.li>
-                  );
-                })}
-            </motion.ul>
-          </div>
-          
-        </div>
-      </nav>
+
+      <SearchListNav searchlist={searchlist} handleSearch={handleSearch} setItems={setItems}
+      docs={docs}/>
+
       <motion.div
         initial={{ x: "100vw" }}
         animate={{ x: 0 }}
