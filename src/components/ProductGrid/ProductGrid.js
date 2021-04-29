@@ -72,7 +72,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         }
       }
       if (listArr.length > 6) {
-        listArr.splice(7);
+        listArr.splice(10);
       }
       setSearchList(listArr);
       console.log(arr, listArr);
@@ -91,7 +91,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
           <div class="col">
             <motion.div
               class="card shadow-lg p-3 mb-5 bg-body rounded"
-              whileHover={{ scale: 1.2 }}
+              whileHover={{ scale: 1.15, zIndex:1 }}
               transition={{ duration: 0.4 }}
             >
               <img
@@ -159,6 +159,9 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         <div class="container">
           <div></div>
           <div class="">
+            <span className="fs-5 fw-bold ">
+              Search For Your Product
+            </span>
             <input
               class="form-control me-2"
               type="search"
@@ -177,7 +180,8 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                     <motion.li
                       initial={{ y: "100vw" }}
                       animate={{ y: 0 }}
-                      transition={{ delay: 0.3 }}
+                      transition={{ }}
+                      whileHover={{scale:1.1}}
                       className={`list-group-item list-group-item-action bg-primary text-white fw-bold border border-2 border-dark`}
                     >
                       {listItem["file"]["prodName"]}
@@ -186,6 +190,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                 })}
             </motion.ul>
           </div>
+          
         </div>
       </nav>
       <motion.div
