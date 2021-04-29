@@ -103,9 +103,9 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       })
       .map((product) => {
         return (
-          <div class="col">
+          <div class="col w-25">
             <motion.div
-              class="card shadow-lg p-3 mb-5 bg-body rounded"
+              class="card shadow-lg p-3 mb-5 bg-body"
               whileHover={{ scale: 1.15, zIndex:1 }}
               transition={{ duration: 0.4 }}
             >
