@@ -24,9 +24,9 @@ const SearchListNav = ({searchlist, handleSearch, setItems, docs}) => {
                     <div>
                         <span></span>
                         <div class="dropdown">
-                            <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            {/* <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Sort By
-                            </button>
+                            </button> */}
                             <ul class="dropdown-menu fs-5" aria-labelledby="dropdownMenuButton1">
                                 {displayName.map((category)=>{
                                 return (<li><a class="dropdown-item" onClick={()=>{setItems(docs,category["value"])}} >{category["Name"]}</a></li>)                                
