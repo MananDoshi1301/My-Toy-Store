@@ -225,7 +225,7 @@ const Nav = (props) => {
             <span className={`${styles.architectDaughters}`}>Hello {localStorage.getItem("userName")} !</span></h2>
         </li>
         <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item fs-5">Order History</a>
+        <li><Link to={`/orderHistory/${localStorage.getItem("userId")}`} class="dropdown-item fs-5">Order History</Link>
         </li>
         <li><a class="dropdown-item fs-5"
           onClick={() => {
