@@ -4,6 +4,7 @@ import AgeCategory from "./AgeCategory/AgeCategory";
 import Carousel from "./Carousel/Carousel";
 import TypeCategory from "./TypeCategory/TypeCategory";
 import BrandCategory from "./BrandCategory/BrandCategory";
+import Footer from "../Footer";
 import { colors, category } from "../Data/Data";
 import { motion } from "framer-motion";
 
@@ -25,8 +26,8 @@ const Dashboard = ({ cartItems, setCartItems }) => {
         }}
         cartItems={cartItems}
         setCartItems={setCartItems}
-        // showCart={showCart}
-        // setShowCart={setShowCart}
+      // showCart={showCart}
+      // setShowCart={setShowCart}
       />
       <motion.div
         initial={{ x: "100vw" }}
@@ -39,11 +40,13 @@ const Dashboard = ({ cartItems, setCartItems }) => {
         }}
       >
         <Carousel></Carousel>
-        <div className="container-fluid mb-5">
+        <div className="container-fluid mb-0">
           {/* <AgeCategory age={category.age} colors={colors}></AgeCategory> */}
           <TypeCategory typeObj={category.typeImgs}></TypeCategory>
           <BrandCategory brandObj={category.brandImgs}></BrandCategory>
         </div>
+
+        <Footer />
       </motion.div>
     </>
   );

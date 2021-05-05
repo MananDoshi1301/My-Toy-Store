@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "../Nav";
 import FetchData from "../FetchData";
+import Footer from "../Footer";
 import { category } from "../Data/Data";
 import { motion } from "framer-motion";
 import styles from "../component.module.css";
@@ -81,20 +82,20 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       setSearchList([]);
     }
   };
-  
-  const setItems = (docs, category=null) => {
 
-    if(category != null){
+  const setItems = (docs, category = null) => {
+
+    if (category != null) {
       if (category === 'name') {
-        docs.sort((a,b)=>{
+        docs.sort((a, b) => {
           return a["file"]["prodName"] - b["file"]["prodName"];
         })
       }
-      else if(category === 'price'){
-        docs.sort((a,b)=>{
+      else if (category === 'price') {
+        docs.sort((a, b) => {
           return parseInt(a["file"]["prodPrice"]) - parseInt(b["file"]["prodPrice"]);
         })
-      }      
+      }
     }
 
     const items = docs
@@ -106,7 +107,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
           <div class="col w-25">
             <motion.div
               class="card shadow-lg p-3 mb-5 bg-body"
-              whileHover={{ scale: 1.15, zIndex:1 }}
+              whileHover={{ scale: 1.15, zIndex: 1 }}
               transition={{ duration: 0.4 }}
             >
               <img
@@ -172,7 +173,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       />
 
       <SearchListNav searchlist={searchlist} handleSearch={handleSearch} setItems={setItems}
-      docs={docs}/>
+        docs={docs} />
 
       <motion.div
         initial={{ x: "100vw" }}
@@ -185,6 +186,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
           </div>
         </div>
       </motion.div>
+      <Footer />
     </>
   );
 };
