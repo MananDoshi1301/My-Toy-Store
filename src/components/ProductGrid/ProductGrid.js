@@ -107,8 +107,8 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
           <div class="col w-25">
             <motion.div
               class="card shadow-lg p-3 mb-5 bg-body"
-              whileHover={{ scale: 1.15, zIndex: 1 }}
-              transition={{ duration: 0.4 }}
+              whileHover={{ scale: 1.1, zIndex: 1 }}
+              transition={{ duration: 0.2 }}
             >
               <img
                 src={product.url}
