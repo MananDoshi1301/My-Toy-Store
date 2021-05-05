@@ -3,7 +3,7 @@ import styles from "./component.module.css";
 
 const Footer = () => {
   const list1 = [
-    "Out toy Store",
+    "Our toy Store",
     "Website T&C",
     "Privacy and cookies",
     "Delivery Policy",
