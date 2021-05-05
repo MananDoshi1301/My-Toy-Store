@@ -79,7 +79,7 @@ const Nav = (props) => {
     if (props.cartItems.length === 0) {
       setCartModal(
         <div className={`display-3 text-center text-light fw-bold d-flex justify-content-center align-items-center`}>
-          <span>No Items to CheckOut!</span> 
+          <span>No Items to CheckOut!</span>
         </div>
       );
     } else {
@@ -156,14 +156,14 @@ const Nav = (props) => {
     }
   }, [cart]);
 
-  useEffect(()=>{
-    if (price===0){
+  useEffect(() => {
+    if (price === 0) {
       setShowCartPrice(false)
     }
-    else{
+    else {
       setShowCartPrice(true);
     }
-  },[price])
+  }, [price])
 
   // DropDown category map
   const category = props.typeCategories.map((category) => (
@@ -213,16 +213,16 @@ const Nav = (props) => {
   );
 
   const imagelogedinDropDown = (
-    <div class="dropdown me-4">      
+    <div class="dropdown me-4">
       <a class="navbar-brand dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src={localStorage.getItem("userImg")} 
-      className={`rounded-circle border border-light border-3`} alt="" width="60" height="60" />
-    </a>
+        <img src={localStorage.getItem("userImg")}
+          className={`rounded-circle border border-light border-3`} alt="" width="60" height="60" />
+      </a>
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 border border-4 border-dark" aria-labelledby="dropdownMenuLink">
         <li>
           <h2 class="dropdown-header fs-4 fw-bold">
-          <span className={`${styles.architectDaughters}`}>Hello {localStorage.getItem("userName")} !</span></h2>
+            <span className={`${styles.architectDaughters}`}>Hello {localStorage.getItem("userName")} !</span></h2>
         </li>
         <li><hr class="dropdown-divider" /></li>
         <li><a class="dropdown-item fs-5">Order History</a>
@@ -230,11 +230,11 @@ const Nav = (props) => {
         <li><a class="dropdown-item fs-5"
           onClick={() => {
             const prevUser = {
-              name:localStorage.getItem("userName"),
-              id:localStorage.getItem("userId"),
-              cart:props.cartItems,
+              name: localStorage.getItem("userName"),
+              id: localStorage.getItem("userId"),
+              cart: props.cartItems,
             }
-            localStorage.setItem("prevUser",JSON.stringify(prevUser));
+            localStorage.setItem("prevUser", JSON.stringify(prevUser));
             console.log(JSON.parse(localStorage.getItem("prevUser")));
             localStorage.setItem("userName", "User");
             localStorage.setItem("userId", "");
@@ -315,20 +315,19 @@ const Nav = (props) => {
                               aria-label="Close"
                             ></button>
                           </div>
-                          <div 
-                          className=
-                          {`modal-body bg-danger ${props.cartItems.length === 0?"d-flex justify-content-center align-items-center":""}`}>
+                          <div
+                            className=
+                            {`modal-body bg-danger ${props.cartItems.length === 0 ? "d-flex justify-content-center align-items-center" : ""}`}>
                             <div class="list-group gap-3">{cartModal}</div>
                           </div>
                           <div class="modal-footer bg-warning">
-                            { <div className={`${styles.marEnd} text-start fw-bold`}>
-                                {props.cartItems.length==0?"":<span>Total: {price}.00/-</span>}
-                              </div>}
+                            {<div className={`${styles.marEnd} text-start fw-bold`}>
+                              {props.cartItems.length == 0 ? "" : <span>Total: {price}.00/-</span>}
+                            </div>}
                             <button
                               type="button"
-                              className={`btn btn-lg btn-secondary ${
-                                props.cartItems.length === 0 ? `disabled` : ""
-                              }`}
+                              className={`btn btn-lg btn-secondary ${props.cartItems.length === 0 ? `disabled` : ""
+                                }`}
                               data-bs-dismiss="modal"
                               onClick={() => {
                                 props.setCartItems([]);
@@ -338,9 +337,8 @@ const Nav = (props) => {
                             </button>
                             <button
                               type="button"
-                              className={`btn btn-lg btn-success ${
-                                props.cartItems.length === 0 ? `disabled` : ""
-                              }`}
+                              className={`btn btn-lg btn-success ${props.cartItems.length === 0 ? `disabled` : ""
+                                }`}
                               onClick={() => {
                                 finalizeCart();
                                 setPlaceOrder(true);
@@ -373,10 +371,10 @@ const Nav = (props) => {
                     {/* {user.name==="User" && } */}
                     {localStorage.getItem("userName") === "User" ? (
                       logSignUpDropDown
-                    ) : localStorage.getItem("userImg") != ""?(imagelogedinDropDown):
+                    ) : localStorage.getItem("userImg") != "" ? (imagelogedinDropDown) :
                       <a className="navbar-brand fs-4 fw-bold">
                         Hello {localStorage.getItem("userName")}
-                        {!localStorage.getItem("userImg")?"!":""}
+                        {!localStorage.getItem("userImg") ? "!" : ""}
                       </a>
                     }
                   </li>
@@ -424,7 +422,7 @@ const Nav = (props) => {
                       All Brands
                     </a>
                     <ul
-                      className="dropdown-menu bg-warning border border-5 border-dark"
+                      className="dropdown-menu bg-info border border-5 border-dark"
                       aria-labelledby="navbarDropdownMenuLink"
                     >
                       {/* Map here for categories display */}
