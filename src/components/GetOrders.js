@@ -47,7 +47,7 @@ const GetOrders = () => {
               <span
                 className={`h5 bg-danger p-3 text-white border border-5 rounded-pill`}
               >
-                Order Placed On: {date[1] + "-" + date[2] + " " + date[3]}
+                Order Placed On: {date[1] + "-" + date[2] + " "+ date[3] + " " + date[4]}
               </span>
               <span
                 className={`text-end h5 bg-danger p-3 text-white border border-5 rounded-pill`}
