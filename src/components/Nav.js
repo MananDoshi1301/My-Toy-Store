@@ -422,7 +422,7 @@ const Nav = (props) => {
                       All Brands
                     </a>
                     <ul
-                      className="dropdown-menu bg-info border border-5 border-dark"
+                      className="dropdown-menu bg-info  border border-5 border-dark"
                       aria-labelledby="navbarDropdownMenuLink"
                     >
                       {/* Map here for categories display */}
