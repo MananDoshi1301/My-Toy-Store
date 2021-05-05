@@ -11,8 +11,9 @@ const PlaceOrder = ({ order, setPlaceOrder }) => {
   useEffect(() => {
     console.log(order);
     const orderRef = projectFirestore.collection("userOrders");
+    const orderDate = timestamp();
     orderRef
-      .add(order)
+      .add({...order, orderDate})
       .then(setPlaceOrder(false))
       .then(alert("Order Placed Successfully"));
   }, [order]);
