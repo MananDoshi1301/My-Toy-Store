@@ -4,6 +4,7 @@ import LogSign from "./components/LogSign/LogSign";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Admin from "./components/LogSign/Admin/Admin";
 import ProductGrid from "./components/ProductGrid/ProductGrid";
+import GetOrders from "./components/GetOrders";
 
 function App() {
   const [cartItems, setCartItems]=useState([]);
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/product/:categoryType/:itemType">
             <ProductGrid cartItems={cartItems} setCartItems={setCartItems} />
+          </Route>
+          <Route path="/orderHistory/:userId">
+            <GetOrders/>
           </Route>
         </Switch>
       </div>
