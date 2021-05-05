@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <>
       <div className={`${styles.footerbg} bg-warning pb-4`}>
-        <div className={`p-5 shadow mb-4`}>
+        <div className={`p-5`}>
           <h1 className={`display-2 fw-bold ${styles.architectDaughters}`}>
             MyToyStore
           </h1>
