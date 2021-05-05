@@ -54,6 +54,16 @@ const LogSign = () => {
           newUser = false;
         }
       }
+      if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(details.email))) {
+        setError({
+          ...error,          
+          showError:true,
+          title:"Error!",
+          text:"Please Enter Valid Email!",
+          state:"error",
+        });  
+        newUser = false;
+      }
       if (newUser) {
         setUploadSignUpData(true);
       }
