@@ -15,7 +15,7 @@ function App() {
             <Dashboard cartItems={cartItems} setCartItems={setCartItems} />
           </Route>
           <Route exact path="/logSign">
-            <LogSign />
+            <LogSign cartItems={cartItems} setCartItems={setCartItems} />
           </Route>
           <Route exact path="/admin">
             <Admin />

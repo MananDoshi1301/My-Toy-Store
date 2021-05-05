@@ -9,7 +9,7 @@ import Alert from '../Alert';
 import { user } from "../Data/Data";
 import styles from "../component.module.css"
 
-const LogSign = () => {
+const LogSign = ({cartItems, setCartItems}) => {
   const { docs } = FetchData("userDetails");
   const history = useHistory();
   let [login, setLogin] = useState(true);
@@ -96,6 +96,11 @@ const LogSign = () => {
         });
         user.name = name;
         user.id = id;
+        let lastUser = JSON.parse(localStorage.getItem("prevUser"));
+        if(lastUser["cart"] != []){
+          setCartItems(lastUser["cart"]);
+          console.log(cartItems);
+        }
         localStorage.setItem("userName", user.name);
         localStorage.setItem("userId", user.id);        
         history.push("/");
@@ -116,6 +121,11 @@ const LogSign = () => {
     localStorage.setItem("userName", obj["profileObj"]["name"]);
     localStorage.setItem("userId", obj["profileObj"]["googleId"]);
     localStorage.setItem("userImg", obj["profileObj"]["imageUrl"]);
+    let lastUser = JSON.parse(localStorage.getItem("prevUser"));
+    if(lastUser["cart"] != []){
+      setCartItems(lastUser["cart"]);
+      console.log(cartItems);
+    }
     history.push("/");
   }
 
