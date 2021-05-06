@@ -1,33 +1,44 @@
-import React,{useState} from 'react'
-import {Link, useParams} from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
 import Nav from "../Nav";
 import FetchData from '../FetchData';
 import Footer from "../Footer";
 import Alert from "../Alert";
+import { motion } from "framer-motion";
 
-const Product = ({cartItems, setCartItems}) => {
-    const {categoryType, itemType, id} = useParams();
+const Product = ({ cartItems, setCartItems }) => {
+    const { categoryType, itemType, id } = useParams();
     const docs = FetchData('products').docs;
     const [error, setError] = useState({
         title: "",
         text: "",
         state: "",
         showError: false,
-      });
+    });
 
     const prodDisplay = () => {
         console.log(docs)
-        const prod = docs.filter((obj)=>{
+        const prod = docs.filter((obj) => {
             return id === obj["id"]
-        }).map((obj)=>{
+        }).map((obj) => {
             let date = obj["createdAt"].toDate();
             date = date.toString();
             date = date.split(" ");
             console.log(date);
             return <div className="container mt-4">
                 <div className="row">
-                    <div className="col-lg-5 d-flex justify-content-center align-items-center"><img src={obj["url"]} className={`img-fluid`} alt={obj["file"]["prodName"]} srcset="" /></div>
-                    <div className="col-lg-7 p-5">
+                    <motion.div 
+                    initial={{x:"-100vw"}}
+                    animate={{x:0}}
+                    transition={{ type: "spring", delay: 0.05, duration: 0.02, stiffness: 15 }}
+                    className="col-lg-5 d-flex justify-content-center align-items-center">
+                        <img src={obj["url"]} className={`img-fluid`} alt={obj["file"]["prodName"]} srcset="" />
+                    </motion.div>
+                    <motion.div
+                        initial={{x:"100vw"}}
+                        animate={{x:0}}
+                        transition={{ type: "spring", delay: 0.05, duration: 0.02, stiffness: 15 }}
+                        className="col-lg-7 p-5">
 
                         <div className="header"><span className="display-2">{obj["file"]["prodName"]}</span></div>
 
@@ -38,26 +49,26 @@ const Product = ({cartItems, setCartItems}) => {
                                 <li className="my-2 fw-bold text-danger"><span className={`fw-bold text-secondary`}>Color:</span> {obj["file"]["prodColor"]}</li>
                                 <li className="my-2 fw-bold text-danger"><span className={`fw-bold text-secondary`}>MRP:</span> {obj["file"]["prodPrice"]}/-</li>
                             </ul>
-                            <div className="lastUpdated lead">Last Updated On: {date[1]+"-"+date[2]+" "+date[3]}</div>
+                            <div className="lastUpdated lead">Last Updated On: {date[1] + "-" + date[2] + " " + date[3]}</div>
                         </div>
                         <div class="d-grid gap-2 mt-4">
-                            {<button 
-                            class="btn btn-success btn-lg" 
-                            type="button" 
-                            disabled={localStorage.getItem("userName") == 'User'?true:false}
-                            onClick={()=>{
-                                setCartItems([...cartItems, id]);                                
-                                setError({
-                                    ...error,          
-                                    showError:true,
-                                    title:"Success!",
-                                    text:"Product Added To Cart!",
-                                    state:"success",
-                                  });
-                            }}>Add To Cart</button>}
+                            {<button
+                                class="btn btn-success btn-lg"
+                                type="button"
+                                disabled={localStorage.getItem("userName") == 'User' ? true : false}
+                                onClick={() => {
+                                    setCartItems([...cartItems, id]);
+                                    setError({
+                                        ...error,
+                                        showError: true,
+                                        title: "Success!",
+                                        text: "Product Added To Cart!",
+                                        state: "success",
+                                    });
+                                }}>Add To Cart</button>}
                             <Link to={`/product/${categoryType}/${itemType}`} class="btn btn-secondary btn-lg" type="button">Back To Products</Link>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         })
