@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Nav from "../Nav";
 import FetchData from "../FetchData";
 import Footer from "../Footer";
@@ -104,7 +104,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       })
       .map((product) => {
         return (
-          <div class="col w-25">
+          <Link to={`/product/${categoryType}/${itemType}/${product["id"]}`} class="col w-25" style={{textDecoration:"none"}}>
             <motion.div
               class="card shadow-lg p-3 mb-5 bg-body"
               whileHover={{ scale: 1.1, zIndex: 1 }}
@@ -116,7 +116,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                 alt={product.file.prodName}
               />
               <div class="card-body">
-                <h5 class="card-title">{product.file.prodName}</h5>
+                <h5 class="card-title text-dark fw-bold">{product.file.prodName}</h5>
 
                 <ul class="list-group list-group-flush">
                   {product.file.prodBrand && (
@@ -132,7 +132,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                       MRP:&nbsp;
                       <span className={`text-danger`}>
                         {product.file.prodPrice}/-
-                      </span>
+                      </span>                      
                     </li>
                   )}
                 </ul>
@@ -150,7 +150,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                 </div>
               </div>
             </motion.div>
-          </div>
+          </Link>
         );
       });
 
