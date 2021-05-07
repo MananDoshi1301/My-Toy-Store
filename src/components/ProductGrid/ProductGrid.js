@@ -104,12 +104,13 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       })
       .map((product) => {
         return (
-          <Link to={`/product/${categoryType}/${itemType}/${product["id"]}`} class="col w-25" style={{textDecoration:"none"}}>
+          <div class="col w-25">
             <motion.div
               class="card shadow-lg p-3 mb-5 bg-body"
               whileHover={{ scale: 1.1, zIndex: 1 }}
               transition={{ duration: 0.2 }}
             >
+              <Link to={`/product/${categoryType}/${itemType}/${product["id"]}`} style={{textDecoration:"none"}}>
               <img
                 src={product.url}
                 class="card-img-top img-fluid"
@@ -136,7 +137,10 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                     </li>
                   )}
                 </ul>
-                <div className={`text-end`}>
+                </div>
+                </Link>
+              {/* </div> */}
+              <div className={`text-end`}>
                   <button
                     className={`btn btn-outline-success
                 ${localStorage.getItem("userName") === "User" ? `disabled` : ""}
@@ -148,9 +152,8 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                     Add To Cart
                   </button>
                 </div>
-              </div>
             </motion.div>
-          </Link>
+            </div>          
         );
       });
 
