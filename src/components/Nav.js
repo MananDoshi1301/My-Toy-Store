@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PlaceOrder from "./Dashboard/PlaceOrder";
+import Alert from "./Alert";
 import FetchData from "./FetchData";
 import styles from "./component.module.css";
 
@@ -12,6 +13,12 @@ const Nav = (props) => {
   const [finalOrder, setFinalOrder] = useState({});
   const [placeOrder, setPlaceOrder] = useState(false);
   const [showCartPrice, setShowCartPrice] = useState(false);
+  const [error, setError] = useState({
+    title: "",
+    text: "",
+    state: "",
+    showError: false,
+  });
   const { docs } = FetchData("products");
 
   // console.log(docs);
@@ -254,6 +261,7 @@ const Nav = (props) => {
 
   return (
     <>
+      {error["showError"] && <Alert error={error} setError={setError} />}
       <nav className="navbar navbar-expand-lg navbar-dark bg-danger fs-4">
         <div className="container">
           <Link to="/" className={`navbar-brand fs-1 fw-bold ${styles.architectDaughters}`}>
@@ -349,6 +357,14 @@ const Nav = (props) => {
                                 props.setCartItems([]);
                                 // setPrice(0);
                                 computeCart();
+                                setError(
+                                  {
+                                  ...error,
+                                  showError: true,
+                                  title: "Success!",
+                                  text: "Order Placed Successfully!",
+                                  state: "success",
+                              })
                               }}
                             >
                               Place Order
@@ -358,6 +374,7 @@ const Nav = (props) => {
                                 order={finalOrder}
                                 setOrder={setFinalOrder}
                                 setPlaceOrder={setPlaceOrder}
+                                
                               />
                             )}
                           </div>
