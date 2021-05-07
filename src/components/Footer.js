@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styles from "./component.module.css";
 
 const Footer = () => {
@@ -13,7 +14,10 @@ const Footer = () => {
 
   return (
     <>
-      <div className={`${styles.footerbg} bg-warning pb-4`}>
+      <motion.div
+        initial={{ y: '100vw' }} animate={{ y: 0 }}
+        transition={{ type: "spring", delay: 0.05, duration: 0.02, stiffness: 15 }}
+        className={`${styles.footerbg} bg-warning pb-4`}>
         <div className={`p-5`}>
           <h1 className={`display-2 fw-bold ${styles.architectDaughters}`}>
             MyToyStore
@@ -175,7 +179,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
