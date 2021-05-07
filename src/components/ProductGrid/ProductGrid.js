@@ -7,6 +7,7 @@ import { category } from "../Data/Data";
 import { motion } from "framer-motion";
 import styles from "../component.module.css";
 import SearchListNav from "./SearchListNav";
+import Alert from "../Alert";
 
 const ProductGrid = ({ cartItems, setCartItems }) => {
   let num = 0;
@@ -14,6 +15,12 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
   let { categoryType, itemType } = useParams(); //Fetch params from links
   const [prodId, setProdId] = useState("");
   const [searchlist, setSearchList] = useState([]);
+  const [error, setError] = useState({
+    title: "",
+    text: "",
+    state: "",
+    showError: false,
+  });
 
   // console.log(categoryType, itemType, docs, cartItems);
   // console.log(docs);
@@ -46,7 +53,14 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
 
   const addProduct = (id) => {
     setProdId(id);
-    alert("Product Added Successfully");
+    // alert("Product Added Successfully");
+    setError({
+      ...error,
+      showError: true,
+      title: "Success!",
+      text: "Product Added To Cart!",
+      state: "success",
+    });
     setCartItems([...cartItems, id]);
   };
 
@@ -110,50 +124,50 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
               whileHover={{ scale: 1.1, zIndex: 1 }}
               transition={{ duration: 0.2 }}
             >
-              <Link to={`/product/${categoryType}/${itemType}/${product["id"]}`} style={{textDecoration:"none"}}>
-              <img
-                src={product.url}
-                class="card-img-top img-fluid"
-                alt={product.file.prodName}
-              />
-              <div class="card-body">
-                <h5 class="card-title text-dark fw-bold">{product.file.prodName}</h5>
+              <Link to={`/product/${categoryType}/${itemType}/${product["id"]}`} style={{ textDecoration: "none" }}>
+                <img
+                  src={product.url}
+                  class="card-img-top img-fluid"
+                  alt={product.file.prodName}
+                />
+                <div class="card-body">
+                  <h5 class="card-title text-dark fw-bold">{product.file.prodName}</h5>
 
-                <ul class="list-group list-group-flush">
-                  {product.file.prodBrand && (
-                    <li class="list-group-item text-muted fw-bolder">
-                      Brand:&nbsp;
-                      <span className={`text-danger`}>
-                        {product.file.prodBrand}
+                  <ul class="list-group list-group-flush">
+                    {product.file.prodBrand && (
+                      <li class="list-group-item text-muted fw-bolder">
+                        Brand:&nbsp;
+                        <span className={`text-danger`}>
+                          {product.file.prodBrand}
+                        </span>
+                      </li>
+                    )}
+                    {product.file.prodPrice && (
+                      <li class="list-group-item text-muted fw-bolder">
+                        MRP:&nbsp;
+                        <span className={`text-danger`}>
+                          {product.file.prodPrice}/-
                       </span>
-                    </li>
-                  )}
-                  {product.file.prodPrice && (
-                    <li class="list-group-item text-muted fw-bolder">
-                      MRP:&nbsp;
-                      <span className={`text-danger`}>
-                        {product.file.prodPrice}/-
-                      </span>                      
-                    </li>
-                  )}
-                </ul>
+                      </li>
+                    )}
+                  </ul>
                 </div>
-                </Link>
+              </Link>
               {/* </div> */}
               <div className={`text-end`}>
-                  <button
-                    className={`btn btn-outline-success
+                <button
+                  className={`btn btn-outline-success
                 ${localStorage.getItem("userName") === "User" ? `disabled` : ""}
                 `}
-                    onClick={() => {
-                      addProduct(product.id);
-                    }}
-                  >
-                    Add To Cart
+                  onClick={() => {
+                    addProduct(product.id);
+                  }}
+                >
+                  Add To Cart
                   </button>
-                </div>
+              </div>
             </motion.div>
-            </div>          
+          </div>
         );
       });
 
@@ -162,6 +176,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
 
   return (
     <>
+      {error["showError"] && <Alert error={error} setError={setError} />}
       <Nav
         typeCategories={category.typeImgs}
         brandCategories={category.brandImgs}
