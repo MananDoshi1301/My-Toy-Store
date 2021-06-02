@@ -30,8 +30,8 @@ const SearchListNav = ({ searchlist, handleSearch, setItems, docs }) => {
                                 Sort By
                             </button> */}
                             <ul className="dropdown-menu fs-5" aria-labelledby="dropdownMenuButton1">
-                                {displayName.map((category) => {
-                                    return (<li><a className="dropdown-item" onClick={() => { setItems(docs, category["value"]) }} >{category["Name"]}</a></li>)
+                                {displayName.map((category, key) => {
+                                    return (<li key={key}><a className="dropdown-item" onClick={() => { setItems(docs, category["value"]) }} >{category["Name"]}</a></li>)
                                 })}
                             </ul>
                         </div>
@@ -54,9 +54,9 @@ const SearchListNav = ({ searchlist, handleSearch, setItems, docs }) => {
                                 className={`list-group ${styles.overlay} `}
                             >
                                 {searchlist &&
-                                    searchlist.map((listItem) => {
+                                    searchlist.map((listItem, key) => {
                                         return (
-                                            <motion.li
+                                            <motion.li key={key}
                                                 initial={{ y: "100vw" }}
                                                 animate={{ y: 0 }}
                                                 transition={{}}

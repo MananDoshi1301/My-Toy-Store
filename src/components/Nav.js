@@ -91,12 +91,9 @@ const Nav = (props) => {
       );
     } else {
       setCartModal(
-        cart.map((obj) => {
-          {
-            // console.log(obj);
-          }
+        cart.map((obj, key) => {
           return (
-            <div
+            <div key={key}
               className="list-group-item list-group-item-action d-flex justify-content-between "
               aria-current="true"
             >
@@ -173,8 +170,8 @@ const Nav = (props) => {
   }, [price])
 
   // DropDown category map
-  const category = props.typeCategories.map((category) => (
-    <li>
+  const category = props.typeCategories.map((category, key) => (
+    <li key={key}>
       <Link to={`/product/prodType/${category.Name}`}>
         <a className="dropdown-item fs-2 fw-bold">{category.Name}</a>
       </Link>
@@ -182,8 +179,8 @@ const Nav = (props) => {
   ));
 
   // brandcategory map
-  const brandCategory = props.brandCategories.map((category) => (
-    <li>
+  const brandCategory = props.brandCategories.map((category, key) => (
+    <li key={key}>
       <Link to={`/product/prodBrand/${category.Name}`}>
         <a className="dropdown-item fs-2 fw-bold">{category.Name}</a>
       </Link>

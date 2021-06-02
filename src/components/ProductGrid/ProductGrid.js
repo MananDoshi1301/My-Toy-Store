@@ -116,9 +116,9 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       .filter((doc) => {
         return doc.file[categoryType] == itemType;
       })
-      .map((product) => {
+      .map((product, key) => {
         return (
-          <div className='col w-25'>
+          <div className='col w-25' key={key}>
             <motion.div
               className='card shadow-lg p-3 mb-5 bg-body'
               whileHover={{ scale: 1.1, zIndex: 1 }}
