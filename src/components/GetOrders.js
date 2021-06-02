@@ -47,7 +47,7 @@ const GetOrders = () => {
               <span
                 className={`h5 bg-danger p-3 text-white border border-5 rounded-pill`}
               >
-                Order Placed On: {date[1] + "-" + date[2] + " "+ date[3] + " " + date[4]}
+                Order Placed On: {date[1] + "-" + date[2] + " " + date[3] + " " + date[4]}
               </span>
               <span
                 className={`text-end h5 bg-danger p-3 text-white border border-5 rounded-pill`}
@@ -61,28 +61,28 @@ const GetOrders = () => {
               })
               .map((subOrder, key) => {
                 return (
-                  <div class="card mb-3 border border-5">
-                    <div class="row g-0">
-                      <div class="col-md-4 text-center">
+                  <div className="card mb-3 border border-5">
+                    <div className="row g-0">
+                      <div className="col-md-4 text-center">
                         <img
                           src={`${subOrder["url"]}`}
                           alt={`${subOrder["file"]["prodName"]}`}
                           className={`w-50 `}
                         />
                       </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h4 class="card-title fs-3">
+                      <div className="col-md-8">
+                        <div className="card-body">
+                          <h4 className="card-title fs-3">
                             {subOrder["file"]["prodName"]}
                           </h4>
-                          <ul class="list-group list-group-flush w-50">
-                            <li class="list-group-item fs-5 text-danger fw-bold">
+                          <ul className="list-group list-group-flush w-50">
+                            <li className="list-group-item fs-5 text-danger fw-bold">
                               Brand: {subOrder["file"]["prodBrand"]}
                             </li>
-                            <li class="list-group-item fs-5 text-primary fw-bold">
+                            <li className="list-group-item fs-5 text-primary fw-bold">
                               Color: {subOrder["file"]["prodColor"]}
                             </li>
-                            <li class="list-group-item fs-5 fw-bold">
+                            <li className="list-group-item fs-5 fw-bold">
                               MRP: {subOrder["file"]["prodPrice"]} X{" "}
                               {quantity[key]}
                             </li>

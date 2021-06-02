@@ -97,47 +97,47 @@ const Nav = (props) => {
           }
           return (
             <div
-              class="list-group-item list-group-item-action d-flex justify-content-between "
+              className="list-group-item list-group-item-action d-flex justify-content-between "
               aria-current="true"
             >
-              <div class="d-flex w-100">
+              <div className="d-flex w-100">
                 <div>
-                  <h4 class="mb-1 text-secondary display-5 mb-4">
+                  <h4 className="mb-1 text-secondary display-5 mb-4">
                     {obj["doc"]["file"]["prodName"]}
                   </h4>
                   {/*////*/}
-                  <ul class="list-group list-group-flush my-3 fs-4">
-                    <li class="list-group-item fs-6 text-info fw-bolder">
+                  <ul className="list-group list-group-flush my-3 fs-4">
+                    <li className="list-group-item fs-6 text-info fw-bolder">
                       Brand: {obj["doc"]["file"]["prodBrand"]}
                     </li>
-                    <li class="list-group-item fs-6 text-warning fw-bolder">
+                    <li className="list-group-item fs-6 text-warning fw-bolder">
                       Color: {obj["doc"]["file"]["prodColor"]}
                     </li>
-                    <li class="list-group-item fs-6 text-danger fw-bolder">
+                    <li className="list-group-item fs-6 text-danger fw-bolder">
                       MRP: {obj["doc"]["file"]["prodPrice"]}/-
                     </li>
                   </ul>
 
                   <div
-                    class="btn-group btn-group-sm ms-2"
+                    className="btn-group btn-group-sm ms-2"
                     role="group"
                     aria-label="Basic mixed styles example"
                   >
                     <button
                       type="button"
-                      class="btn btn-danger"
+                      className="btn btn-danger"
                       onClick={() => {
                         removeItem(obj["id"]);
                       }}
                     >
                       -
                     </button>
-                    <button type="button" class="btn btn-warning">
+                    <button type="button" className="btn btn-warning">
                       {obj["total"]}
                     </button>
                     <button
                       type="button"
-                      class="btn btn-success"
+                      className="btn btn-success"
                       onClick={() => {
                         addItem(obj["id"]);
                       }}
@@ -220,24 +220,24 @@ const Nav = (props) => {
   );
 
   const imagelogedinDropDown = (
-    <div class="dropdown me-4">
-      <a class="navbar-brand dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <div className="dropdown me-4">
+      <a className="navbar-brand dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
         <img src={localStorage.getItem("userImg")}
           className={`rounded-circle border border-light border-3`} alt="" width="60" height="60" />
       </a>
 
-      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 border border-4 border-dark" aria-labelledby="dropdownMenuLink">
+      <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 border border-4 border-dark" aria-labelledby="dropdownMenuLink">
         <li>
-          <h2 class="dropdown-header fs-4 fw-bold">
+          <h2 className="dropdown-header fs-4 fw-bold">
             <span className={`${styles.architectDaughters}`}>Hello {localStorage.getItem("userName")} !</span></h2>
         </li>
-        <li><hr class="dropdown-divider" /></li>
+        <li><hr className="dropdown-divider" /></li>
         <li>
-          <Link to={`/orderHistory/${localStorage.getItem("userId")}`} class="dropdown-item fs-5">
+          <Link to={`/orderHistory/${localStorage.getItem("userId")}`} className="dropdown-item fs-5">
             Order History
           </Link>
         </li>
-        <li><a class="dropdown-item fs-5"
+        <li><a className="dropdown-item fs-5"
           onClick={() => {
             const prevUser = {
               name: localStorage.getItem("userName"),
@@ -280,7 +280,7 @@ const Nav = (props) => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div classNameName="d-flex">
+          <div className="d-flex">
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav d-flex justify-space-between">
                 {/* Cart ----------------------------------------------------- */}
@@ -296,7 +296,7 @@ const Nav = (props) => {
                         width="20"
                         height="30"
                         fill="currentColor"
-                        class="bi bi-cart-fill"
+                        className="bi bi-cart-fill"
                         viewBox="0 0 16 16"
                       >
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
@@ -305,7 +305,7 @@ const Nav = (props) => {
 
                     {/* <!-- Modal --> */}
                     <div
-                      class="modal fade"
+                      className="modal fade"
                       id="staticBackdrop"
                       data-bs-backdrop="static"
                       data-bs-keyboard="false"
@@ -313,15 +313,15 @@ const Nav = (props) => {
                       aria-labelledby="staticBackdropLabel"
                       aria-hidden="true"
                     >
-                      <div class="modal-dialog modal-fullscreen">
-                        <div class="modal-content">
-                          <div class="modal-header bg-warning">
+                      <div className="modal-dialog modal-fullscreen">
+                        <div className="modal-content">
+                          <div className="modal-header bg-warning">
                             <h5 className={`modal-title display-4 text-light fw-bolder ${styles.indieFlower}`} id="staticBackdropLabel">
                               My Cart
                             </h5>
                             <button
                               type="button"
-                              class="btn-close me-3"
+                              className="btn-close me-3"
                               data-bs-dismiss="modal"
                               aria-label="Close"
                             ></button>
@@ -329,9 +329,9 @@ const Nav = (props) => {
                           <div
                             className=
                             {`modal-body bg-danger ${props.cartItems.length === 0 ? "d-flex justify-content-center align-items-center" : ""}`}>
-                            <div class="list-group gap-3">{cartModal}</div>
+                            <div className="list-group gap-3">{cartModal}</div>
                           </div>
-                          <div class="modal-footer bg-warning">
+                          <div className="modal-footer bg-warning">
                             {<div className={`${styles.marEnd} text-start fw-bold`}>
                               {props.cartItems.length == 0 ? "" : <span>Total: {price}.00/-</span>}
                             </div>}
@@ -359,12 +359,12 @@ const Nav = (props) => {
                                 computeCart();
                                 setError(
                                   {
-                                  ...error,
-                                  showError: true,
-                                  title: "Success!",
-                                  text: "Order Placed Successfully!",
-                                  state: "success",
-                              })
+                                    ...error,
+                                    showError: true,
+                                    title: "Success!",
+                                    text: "Order Placed Successfully!",
+                                    state: "success",
+                                  })
                               }}
                             >
                               Place Order
@@ -374,7 +374,7 @@ const Nav = (props) => {
                                 order={finalOrder}
                                 setOrder={setFinalOrder}
                                 setPlaceOrder={setPlaceOrder}
-                                
+
                               />
                             )}
                           </div>

@@ -12,8 +12,8 @@ const SearchListNav = ({ searchlist, handleSearch, setItems, docs }) => {
     return (
         <>
 
-            <nav class="navbar bg-warning">
-                <div class="container">
+            <nav className="navbar bg-warning">
+                <div className="container">
                     <div></div>
                     <div></div>
                     <div></div>
@@ -25,24 +25,24 @@ const SearchListNav = ({ searchlist, handleSearch, setItems, docs }) => {
                     <div></div>
                     <div>
                         <span></span>
-                        <div class="dropdown">
-                            {/* <button class="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div className="dropdown">
+                            {/* <button className="btn btn-lg btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Sort By
                             </button> */}
-                            <ul class="dropdown-menu fs-5" aria-labelledby="dropdownMenuButton1">
+                            <ul className="dropdown-menu fs-5" aria-labelledby="dropdownMenuButton1">
                                 {displayName.map((category) => {
-                                    return (<li><a class="dropdown-item" onClick={() => { setItems(docs, category["value"]) }} >{category["Name"]}</a></li>)
+                                    return (<li><a className="dropdown-item" onClick={() => { setItems(docs, category["value"]) }} >{category["Name"]}</a></li>)
                                 })}
                             </ul>
                         </div>
                     </div>
-                    <div class="">
+                    <div className="">
                         <div>
                             <span className="fs-5 fw-bold ">
                                 Search For Your Product
-                        </span>
+                            </span>
                             <input
-                                class="form-control me-2"
+                                className="form-control me-2"
                                 type="search"
                                 placeholder="Search"
                                 aria-label="Search"

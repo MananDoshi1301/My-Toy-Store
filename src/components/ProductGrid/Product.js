@@ -51,9 +51,9 @@ const Product = ({ cartItems, setCartItems }) => {
                             </ul>
                             <div className="lastUpdated lead">Last Updated On: {date[1] + "-" + date[2] + " " + date[3]}</div>
                         </div>
-                        <div class="d-grid gap-2 mt-4">
+                        <div className="d-grid gap-2 mt-4">
                             {<button
-                                class="btn btn-success btn-lg"
+                                className="btn btn-success btn-lg"
                                 type="button"
                                 disabled={localStorage.getItem("userName") == 'User' ? true : false}
                                 onClick={() => {
@@ -66,7 +66,7 @@ const Product = ({ cartItems, setCartItems }) => {
                                         state: "success",
                                     });
                                 }}>Add To Cart</button>}
-                            <Link to={`/product/${categoryType}/${itemType}`} class="btn btn-secondary btn-lg" type="button">Back To Products</Link>
+                            <Link to={`/product/${categoryType}/${itemType}`} className="btn btn-secondary btn-lg" type="button">Back To Products</Link>
                         </div>
                     </motion.div>
                 </div>

@@ -118,9 +118,9 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       })
       .map((product) => {
         return (
-          <div class='col w-25'>
+          <div className='col w-25'>
             <motion.div
-              class='card shadow-lg p-3 mb-5 bg-body'
+              className='card shadow-lg p-3 mb-5 bg-body'
               whileHover={{ scale: 1.1, zIndex: 1 }}
               transition={{ duration: 0.2 }}
             >
@@ -130,17 +130,17 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
               >
                 <img
                   src={product.url}
-                  class='card-img-top img-fluid'
+                  className='card-img-top img-fluid'
                   alt={product.file.prodName}
                 />
-                <div class='card-body'>
-                  <h5 class='card-title text-dark fw-bold'>
+                <div className='card-body'>
+                  <h5 className='card-title text-dark fw-bold'>
                     {product.file.prodName}
                   </h5>
 
-                  <ul class='list-group list-group-flush'>
+                  <ul className='list-group list-group-flush'>
                     {product.file.prodBrand && (
-                      <li class='list-group-item text-muted fw-bolder'>
+                      <li className='list-group-item text-muted fw-bolder'>
                         Brand:&nbsp;
                         <span className={`text-danger`}>
                           {product.file.prodBrand}
@@ -148,7 +148,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                       </li>
                     )}
                     {product.file.prodPrice && (
-                      <li class='list-group-item text-muted fw-bolder'>
+                      <li className='list-group-item text-muted fw-bolder'>
                         MRP:&nbsp;
                         <span className={`text-danger`}>
                           {product.file.prodPrice}/-
@@ -209,7 +209,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         transition={{ type: 'spring', delay: 0.3, duration: 1, stiffness: 130 }}
       >
         <div className='container my-5'>
-          <div class='row row-cols-1 row-cols-md-3 g-4 mt-5'>
+          <div className='row row-cols-1 row-cols-md-3 g-4 mt-5'>
             {docs && setItems(docs)}
           </div>
         </div>
