@@ -180,7 +180,7 @@ const Footer = () => {
           </div>
           <div className="row">
             <div className="lead">
-              Made With &#128153; by <span className={`fw-bold ${styles.architectDaughters}`}>Manan Doshi</span> &#128519;
+              Made With &#128153; by <span className={`fw-bold ${styles.architectDaughters}`}>Manan Doshi</span>
             </div>
           </div>
         </div>
