@@ -55,7 +55,7 @@ const Product = ({ cartItems, setCartItems }) => {
                             {<button
                                 className="btn btn-success btn-lg"
                                 type="button"
-                                disabled={localStorage.getItem("userName") == 'User' ? true : false}
+                                disabled={localStorage.getItem("userName") === 'User' ? true : false}
                                 onClick={() => {
                                     setCartItems([...cartItems, id]);
                                     setError({

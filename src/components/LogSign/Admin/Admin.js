@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import UploadProgress from './UploadProgress'
 import { category } from "../../Data/Data";
@@ -104,7 +104,7 @@ const Admin = () => {
             <label className={`form-label fs-3 mt-3`} htmlFor="productBrand">
               Product Brand
             </label>
-            <select className={`form-control`} name="" id="productBrand"
+            <select className={`form-control`} id="productBrand"
               onChange={handleNewProduct}
               name="prodBrand"
               required

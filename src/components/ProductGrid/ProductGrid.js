@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Nav from '../Nav';
 import FetchData from '../FetchData';
 import Footer from '../Footer';
 import { category } from '../Data/Data';
 import { motion } from 'framer-motion';
-import styles from '../component.module.css';
 import SearchListNav from './SearchListNav';
 import Alert from '../Alert';
 
 const ProductGrid = ({ cartItems, setCartItems }) => {
-  let num = 0;
+  // let num = 0;
   let { docs } = FetchData('products'); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
   const [prodId, setProdId] = useState('');
@@ -114,7 +113,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
 
     const items = docs
       .filter((doc) => {
-        return doc.file[categoryType] == itemType;
+        return doc.file[categoryType] === itemType;
       })
       .map((product, key) => {
         return (

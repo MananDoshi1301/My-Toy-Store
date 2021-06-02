@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const GetOrders = () => {
   const userOrders = FetchData("userOrders").docs;
-  let docs = FetchData("products").docs;
+  // let docs = FetchData("products").docs;
   console.log(userOrders);
   // console.log(docs)
   let { userId } = useParams(); //Fetch params from links

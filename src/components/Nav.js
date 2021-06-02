@@ -26,7 +26,7 @@ const Nav = (props) => {
   const finalizeCart = () => {
     let item = [];
     for (let i = 0; i < cart.length; i++) {
-      let obj = "item " + i;
+      // let obj = "item " + i;
       item.push(cart[i]["doc"], cart[i]["total"]);
     }
     setFinalOrder({
@@ -281,7 +281,7 @@ const Nav = (props) => {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav d-flex justify-space-between">
                 {/* Cart ----------------------------------------------------- */}
-                {name != "User" && props.navShow.cart && (
+                {name !== "User" && props.navShow.cart && (
                   <li className="nav-item order-3 mx-2" onClick={computeCart}>
                     <a
                       className="nav-link"
@@ -330,7 +330,7 @@ const Nav = (props) => {
                           </div>
                           <div className="modal-footer bg-warning">
                             {<div className={`${styles.marEnd} text-start fw-bold`}>
-                              {props.cartItems.length == 0 ? "" : <span>Total: {price}.00/-</span>}
+                              {props.cartItems.length === 0 ? "" : <span>Total: {price}.00/-</span>}
                             </div>}
                             <button
                               type="button"
@@ -388,7 +388,7 @@ const Nav = (props) => {
                     {/* {user.name==="User" && } */}
                     {localStorage.getItem("userName") === "User" ? (
                       logSignUpDropDown
-                    ) : localStorage.getItem("userImg") != "" ? (imagelogedinDropDown) :
+                    ) : localStorage.getItem("userImg") !== "" ? (imagelogedinDropDown) :
                       <a className="navbar-brand fs-4 fw-bold">
                         Hello {localStorage.getItem("userName")}
                         {!localStorage.getItem("userImg") ? "!" : ""}
@@ -450,7 +450,7 @@ const Nav = (props) => {
                 )}
                 {/* ========================================================== */}
               </ul>
-              {props.navShow.user && name != "User" && localStorage.getItem("userImg") == "" && (
+              {props.navShow.user && name !== "User" && localStorage.getItem("userImg") === "" && (
                 <button
                   className={`btn btn-warning ms-3`}
                   onClick={() => {

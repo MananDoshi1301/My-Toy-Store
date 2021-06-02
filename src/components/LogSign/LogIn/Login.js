@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './Login.module.css';
 import GoogleLogin from 'react-google-login';
 import { motion } from "framer-motion";

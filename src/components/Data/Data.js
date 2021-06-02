@@ -1,5 +1,3 @@
-import React from 'react';
-
 //Images For TypeCategory-----------------------------------------------------------
 import actionFigures from "../../imagesForDB/actionFigures.jpg"
 import dolls from "../../imagesForDB/dolls.jpg"

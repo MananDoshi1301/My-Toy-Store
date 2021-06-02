@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import Nav from "../Nav";
-import AgeCategory from "./AgeCategory/AgeCategory";
 import Carousel from "./Carousel/Carousel";
 import TypeCategory from "./TypeCategory/TypeCategory";
 import BrandCategory from "./BrandCategory/BrandCategory";
 import Footer from "../Footer";
-import { colors, category } from "../Data/Data";
+import { category } from "../Data/Data";
 import { motion } from "framer-motion";
 
 const Dashboard = ({ cartItems, setCartItems }) => {
   // console.log(JSON.parse(JSON.stringify(localStorage.getItem("userCart"))));
   // console.log(JSON.parse(localStorage.getItem("userCart")));
-  const [showCart, setShowCart] = useState(false);
+  // const [showCart, setShowCart] = useState(false);
   console.log(cartItems);
   window.scrollTo(0, 0);
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
-import { projectStorage, projectFirestore, timestamp } from "../../../Firebase/config";
+import { projectFirestore } from "../../../Firebase/config";
 
 const NewUserProgress = ({ file, setFile }) => {
     const history = useHistory();
