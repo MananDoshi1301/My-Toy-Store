@@ -27,16 +27,16 @@ const Product = ({ cartItems, setCartItems }) => {
             console.log(date);
             return <div className="container mt-4">
                 <div className="row">
-                    <motion.div 
-                    initial={{x:"-100vw"}}
-                    animate={{x:0}}
-                    transition={{ type: "spring", delay: 0.05, duration: 0.02, stiffness: 15 }}
-                    className="col-lg-5 d-flex justify-content-center align-items-center">
+                    <motion.div
+                        initial={{ x: "-100vw" }}
+                        animate={{ x: 0 }}
+                        transition={{ type: "spring", delay: 0.05, duration: 0.02, stiffness: 15 }}
+                        className="col-lg-5 d-flex justify-content-center align-items-center">
                         <img src={obj["url"]} className={`img-fluid`} alt={obj["file"]["prodName"]} srcset="" />
                     </motion.div>
                     <motion.div
-                        initial={{x:"100vw"}}
-                        animate={{x:0}}
+                        initial={{ x: "100vw" }}
+                        animate={{ x: 0 }}
                         transition={{ type: "spring", delay: 0.05, duration: 0.02, stiffness: 15 }}
                         className="col-lg-7 p-5">
 
@@ -74,6 +74,9 @@ const Product = ({ cartItems, setCartItems }) => {
         })
         return prod;
     }
+
+    window.scrollTo(0, 0);
+
     return (
         <>
             {error["showError"] && <Alert error={error} setError={setError} />}

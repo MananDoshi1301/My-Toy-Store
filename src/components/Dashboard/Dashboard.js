@@ -13,6 +13,7 @@ const Dashboard = ({ cartItems, setCartItems }) => {
   // console.log(JSON.parse(localStorage.getItem("userCart")));
   const [showCart, setShowCart] = useState(false);
   console.log(cartItems);
+  window.scrollTo(0, 0);
   return (
     <>
       <Nav

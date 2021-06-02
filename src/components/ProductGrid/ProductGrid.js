@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import Nav from "../Nav";
-import FetchData from "../FetchData";
-import Footer from "../Footer";
-import { category } from "../Data/Data";
-import { motion } from "framer-motion";
-import styles from "../component.module.css";
-import SearchListNav from "./SearchListNav";
-import Alert from "../Alert";
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import Nav from '../Nav';
+import FetchData from '../FetchData';
+import Footer from '../Footer';
+import { category } from '../Data/Data';
+import { motion } from 'framer-motion';
+import styles from '../component.module.css';
+import SearchListNav from './SearchListNav';
+import Alert from '../Alert';
 
 const ProductGrid = ({ cartItems, setCartItems }) => {
   let num = 0;
-  let { docs } = FetchData("products"); //Fetch from db
+  let { docs } = FetchData('products'); //Fetch from db
   let { categoryType, itemType } = useParams(); //Fetch params from links
-  const [prodId, setProdId] = useState("");
+  const [prodId, setProdId] = useState('');
   const [searchlist, setSearchList] = useState([]);
   const [error, setError] = useState({
-    title: "",
-    text: "",
-    state: "",
+    title: '',
+    text: '',
+    state: '',
     showError: false,
   });
 
@@ -26,10 +26,10 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
   // console.log(docs);
 
   const LCS = (str1, str2) => {
-    var rows = str1.split("");
-    rows.unshift("");
-    var cols = str2.split("");
-    cols.unshift("");
+    var rows = str1.split('');
+    rows.unshift('');
+    var cols = str2.split('');
+    cols.unshift('');
     var m = rows.length;
     var n = cols.length;
     var dp = [];
@@ -57,9 +57,9 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
     setError({
       ...error,
       showError: true,
-      title: "Success!",
-      text: "Product Added To Cart!",
-      state: "success",
+      title: 'Success!',
+      text: 'Product Added To Cart!',
+      state: 'success',
     });
     setCartItems([...cartItems, id]);
   };
@@ -71,7 +71,7 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       for (let count = 0; count < docs.length; count++) {
         let match = LCS(
           str.toLowerCase(),
-          docs[count]["file"]["prodName"].toLowerCase()
+          docs[count]['file']['prodName'].toLowerCase()
         );
         let obj = { doc: docs[count], totalMatch: match };
         docArray.push(obj);
@@ -82,9 +82,9 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       let arr = [],
         listArr = [];
       for (let count = 0; count < docArray.length; count++) {
-        arr.push(docArray[count]["doc"]);
-        if (docArray[count]["totalMatch"] >= str.length - 1) {
-          listArr.push(docArray[count]["doc"]);
+        arr.push(docArray[count]['doc']);
+        if (docArray[count]['totalMatch'] >= str.length - 1) {
+          listArr.push(docArray[count]['doc']);
         }
       }
       if (listArr.length > 6) {
@@ -98,17 +98,17 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
   };
 
   const setItems = (docs, category = null) => {
-
     if (category != null) {
       if (category === 'name') {
         docs.sort((a, b) => {
-          return a["file"]["prodName"] - b["file"]["prodName"];
-        })
-      }
-      else if (category === 'price') {
+          return a['file']['prodName'] - b['file']['prodName'];
+        });
+      } else if (category === 'price') {
         docs.sort((a, b) => {
-          return parseInt(a["file"]["prodPrice"]) - parseInt(b["file"]["prodPrice"]);
-        })
+          return (
+            parseInt(a['file']['prodPrice']) - parseInt(b['file']['prodPrice'])
+          );
+        });
       }
     }
 
@@ -118,24 +118,29 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
       })
       .map((product) => {
         return (
-          <div class="col w-25">
+          <div class='col w-25'>
             <motion.div
-              class="card shadow-lg p-3 mb-5 bg-body"
+              class='card shadow-lg p-3 mb-5 bg-body'
               whileHover={{ scale: 1.1, zIndex: 1 }}
               transition={{ duration: 0.2 }}
             >
-              <Link to={`/product/${categoryType}/${itemType}/${product["id"]}`} style={{ textDecoration: "none" }}>
+              <Link
+                to={`/product/${categoryType}/${itemType}/${product['id']}`}
+                style={{ textDecoration: 'none' }}
+              >
                 <img
                   src={product.url}
-                  class="card-img-top img-fluid"
+                  class='card-img-top img-fluid'
                   alt={product.file.prodName}
                 />
-                <div class="card-body">
-                  <h5 class="card-title text-dark fw-bold">{product.file.prodName}</h5>
+                <div class='card-body'>
+                  <h5 class='card-title text-dark fw-bold'>
+                    {product.file.prodName}
+                  </h5>
 
-                  <ul class="list-group list-group-flush">
+                  <ul class='list-group list-group-flush'>
                     {product.file.prodBrand && (
-                      <li class="list-group-item text-muted fw-bolder">
+                      <li class='list-group-item text-muted fw-bolder'>
                         Brand:&nbsp;
                         <span className={`text-danger`}>
                           {product.file.prodBrand}
@@ -143,11 +148,11 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
                       </li>
                     )}
                     {product.file.prodPrice && (
-                      <li class="list-group-item text-muted fw-bolder">
+                      <li class='list-group-item text-muted fw-bolder'>
                         MRP:&nbsp;
                         <span className={`text-danger`}>
                           {product.file.prodPrice}/-
-                      </span>
+                        </span>
                       </li>
                     )}
                   </ul>
@@ -157,14 +162,14 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
               <div className={`text-end`}>
                 <button
                   className={`btn btn-outline-success
-                ${localStorage.getItem("userName") === "User" ? `disabled` : ""}
+                ${localStorage.getItem('userName') === 'User' ? `disabled` : ''}
                 `}
                   onClick={() => {
                     addProduct(product.id);
                   }}
                 >
                   Add To Cart
-                  </button>
+                </button>
               </div>
             </motion.div>
           </div>
@@ -174,9 +179,10 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
     return items;
   };
 
+  window.scrollTo(0, 0);
   return (
     <>
-      {error["showError"] && <Alert error={error} setError={setError} />}
+      {error['showError'] && <Alert error={error} setError={setError} />}
       <Nav
         typeCategories={category.typeImgs}
         brandCategories={category.brandImgs}
@@ -190,16 +196,20 @@ const ProductGrid = ({ cartItems, setCartItems }) => {
         setCartItems={setCartItems}
       />
 
-      <SearchListNav searchlist={searchlist} handleSearch={handleSearch} setItems={setItems}
-        docs={docs} />
+      <SearchListNav
+        searchlist={searchlist}
+        handleSearch={handleSearch}
+        setItems={setItems}
+        docs={docs}
+      />
 
       <motion.div
-        initial={{ x: "100vw" }}
+        initial={{ x: '100vw' }}
         animate={{ x: 0 }}
-        transition={{ type: "spring", delay: 0.3, duration: 1, stiffness: 130 }}
+        transition={{ type: 'spring', delay: 0.3, duration: 1, stiffness: 130 }}
       >
-        <div className="container my-5">
-          <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+        <div className='container my-5'>
+          <div class='row row-cols-1 row-cols-md-3 g-4 mt-5'>
             {docs && setItems(docs)}
           </div>
         </div>
