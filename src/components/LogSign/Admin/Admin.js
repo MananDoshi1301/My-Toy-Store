@@ -134,6 +134,7 @@ const Admin = () => {
                   console.log(stateDetails);
                   sendData(stateDetails)
                 }}
+                disabled
               >Submit</button>
               <Link to="/">
                 <button className="mt-3 btn btn-primary">
